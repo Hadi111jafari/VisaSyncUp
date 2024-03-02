@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link, redirect } from 'react-router-dom';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+  const { t } = useTranslation();
+
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
@@ -29,7 +32,9 @@ const Login = () => {
   return (
     <div className="max-w-md mx-auto flex justify-center items-center h-screen">
       <div className="w-full">
-        <h2 className="text-3xl font-bold mb-4">Login</h2>
+        <h2 dir="rtl" className="text-3xl font-bold mb-4">
+          {t('Login')}
+        </h2>
         <form onSubmit={handleLoginSubmit} className="space-y-4">
           <div>
             <input
@@ -54,16 +59,17 @@ const Login = () => {
             />
           </div>
           <button
+            dir="rtl"
             type="submit"
             className="w-full bg-green-500 text-white py-2 rounded-full hover:bg-green-600  transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Continue
+            {t('Continue')}
           </button>
         </form>
-        <p>
-          Don't have an account?{' '}
+        <p dir="rtl">
+          {t("Don't have an account?")}{' '}
           <Link to="/signup" className="text-gray-600 bold">
-            Sign up
+            {t('Sign up')}
           </Link>
         </p>
         {error && <div className="text-red-500 mt-4">{error}</div>}
