@@ -42,8 +42,8 @@ const Login = () => {
               name="email"
               value={loginData.email}
               onChange={handleLoginChange}
-              placeholder="Ex: hadi@gmail.com"
-              className="w-full px-4 py-2 rounded-full border"
+              placeholder="hadi@gmail.com"
+              className="w-full px-4 py-2 rounded-full border text-right"
               required
             />
           </div>
@@ -53,8 +53,8 @@ const Login = () => {
               name="password"
               value={loginData.password}
               onChange={handleLoginChange}
-              placeholder="Password"
-              className="w-full px-4 py-2 rounded-full border"
+              placeholder={t('Password')}
+              className="w-full px-4 py-2 rounded-full border text-right"
               required
             />
           </div>
