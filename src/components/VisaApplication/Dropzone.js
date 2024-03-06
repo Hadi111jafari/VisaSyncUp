@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-const CustomDropzone = () => {
+const CustomDropzone = ({ required }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -13,12 +13,12 @@ const CustomDropzone = () => {
   return (
     <div style={dropzoneStyles}>
       <div {...getRootProps()} style={dropzoneInnerStyles}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} required={required} />
         <p>
-          {selectedFiles.length > 0 ? selectedFiles[0].name : 'No file chosen'}
+          {selectedFiles.length > 0 ? selectedFiles[0].name : 'No file uploaded'}
         </p>
         <button onClick={() => {}} className="border p-1">
-          Select Files
+          Upload Files
         </button>
       </div>
     </div>
