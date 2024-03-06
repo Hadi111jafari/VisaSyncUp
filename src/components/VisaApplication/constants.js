@@ -28,8 +28,14 @@ export const visaCenterLocations = [
   'جلال آباد',
 ];
 
-export const gender = ['مرد', 'زن', 'نامعلوم', 'دیگر']
-export const maritalStatus = ['مجرد', 'متاهل', 'بیوه']
+export const gender = ['مرد', 'زن'];
+export const maritalStatus = ['مجرد', 'متاهل', 'طلاق'];
+export let stayPeriod = [];
+for (let i = 1; i <= 90; i++) {
+  stayPeriod.push(i);
+}
+
+export const entryType = ['یکبار', 'دوبار', 'چند بار'];
 
 export const instructions = [
   `
