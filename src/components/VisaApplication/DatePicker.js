@@ -3,9 +3,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import dayjs from 'dayjs';
 
-const CustomDatePicker = ({ label }) => {
+const CustomDatePicker = ({ label, required }) => {
   const [value, setValue] = useState(null);
   const formattedDate = dayjs(value).format('YYYY-MM-DD');
+  console.log("🚀 ~ CustomDatePicker ~ formattedDate:", formattedDate)
 
   return (
     <div>
@@ -14,6 +15,7 @@ const CustomDatePicker = ({ label }) => {
           slotProps={{ textField: { size: 'small' } }}
           value={value}
           onChange={(newValue) => setValue(newValue)}
+          required={required}
         />
       </DemoContainer>
       <label className="text-gray-500 text-sm font-semibold mb-2">
