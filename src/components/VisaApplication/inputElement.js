@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './InputDropdown.css';
+import CustomLabel from './CustomLabel';
 
-const InputDropdown = ({ label, options, defaultValue, instruction }) => {
+const InputElement = ({
+  label,
+  options,
+  defaultValue,
+  instruction,
+  type,
+  required,
+}) => {
   const [inputValue, setInputValue] = useState(defaultValue || '');
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -35,21 +43,56 @@ const InputDropdown = ({ label, options, defaultValue, instruction }) => {
   if (options && options.length > 0) {
     filteredOptions = options.filter((option) => option.includes(inputValue));
   }
+  
+  let input;
 
-  const input = (
-    <>
-      <input
-        type="text"
-        className="w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500"
-        placeholder={label}
-        value={inputValue}
-        onClick={() => setShowDropdown(true)}
-        onChange={handleInputChange}
-        ref={inputRef}
-        dir="rtl"
-      />
-    </>
-  );
+  switch (type) {
+    case 'textarea':
+      input = (
+        <textarea
+          className="w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500"
+          placeholder={label}
+          value={inputValue}
+          onClick={() => setShowDropdown(true)}
+          onChange={handleInputChange}
+          ref={inputRef}
+          dir="rtl"
+          required={required}
+        ></textarea>
+      );
+      break;
+    case 'tel':
+    case 'number':
+    case 'email':
+      input = (
+        <input
+          type={type}
+          className="w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500"
+          placeholder={label}
+          value={inputValue}
+          onClick={() => setShowDropdown(true)}
+          onChange={handleInputChange}
+          ref={inputRef}
+          dir="rtl"
+          required={required}
+        />
+      );
+      break;
+    default:
+      input = (
+        <input
+          type="text"
+          className="w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500"
+          placeholder={label}
+          value={inputValue}
+          onClick={() => setShowDropdown(true)}
+          onChange={handleInputChange}
+          ref={inputRef}
+          dir="rtl"
+          required={required}
+        />
+      );
+  }
 
   return (
     <div className="mb-4 flex items-center w-full ">
@@ -81,12 +124,9 @@ const InputDropdown = ({ label, options, defaultValue, instruction }) => {
         </div>
         <p className="m-2">{instruction}</p>
       </div>
-      <label className="text-gray-500 text-sm font-semibold mb-2">
-        <span className="text-red-500">* </span>
-        {label}
-      </label>
+      <CustomLabel label={label} />
     </div>
   );
 };
 
-export default InputDropdown;
+export default InputElement;
