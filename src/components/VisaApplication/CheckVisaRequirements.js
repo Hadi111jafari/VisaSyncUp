@@ -1,5 +1,5 @@
 import React from 'react';
-import InputDropdown from './InputDropdown';
+import InputElement from './inputElement';
 import {
   visaTypes,
   passportTypes,
@@ -7,10 +7,10 @@ import {
   visaCenterLocations,
   instructions,
 } from './constants.js';
-import { Link } from 'react-router-dom';
-import { IoIosSave } from 'react-icons/io';
+
 import { RxDotFilled } from 'react-icons/rx';
 import { FaFlag } from 'react-icons/fa6';
+import SaveButton from './Button.js';
 
 const CheckVisaRequirements = () => {
   return (
@@ -25,39 +25,29 @@ const CheckVisaRequirements = () => {
           مطالعه نمایید
         </p>
         <div className="flex flex-wrap justify-end mt-10 ">
-          <InputDropdown
+          <InputElement
             label="نوع ویزه ها"
             options={visaTypes}
             defaultValue="ورود"
           />
-          <InputDropdown
+          <InputElement
             label="ملیت"
             options={nationality}
             defaultValue="افغان"
           />
-          <InputDropdown
-            label="نوع پاسپورت"
+          <InputElement
+            label="نوع گذرنامه"
             options={passportTypes}
             defaultValue="عادی"
           />
-          <InputDropdown
+          <InputElement
             label="مرکز مراجعه ویزه"
             options={visaCenterLocations}
             defaultValue="کابل"
             instruction="سفارت یا نمایندگی ایران که قصد تحویل مدارک و یا دریافت ویزه را دارید"
           />
         </div>
-
-        <Link
-          to="/visa-form"
-          className="mt-10 inline-block  hover:bg-green-500 hover:text-white text-green-500 border font-bold py-2 px-4 rounded flex items-center"
-          style={{ width: '140px' }}
-        >
-          ثبت و ادامه
-          <span className="ml-2">
-            <IoIosSave />
-          </span>
-        </Link>
+        <SaveButton link="/visa-form" />
       </div>
 
       <div className="sm:w-1/2 p-4 text-gray-500 md:p-10 instruction" dir="rtl">
