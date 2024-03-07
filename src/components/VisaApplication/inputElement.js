@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './InputDropdown.css';
+import './InputElement.css';
 import CustomLabel from './CustomLabel';
 
 const InputElement = ({
@@ -31,7 +31,7 @@ const InputElement = ({
         setShowDropdown(false);
       }
     };
-
+    
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -43,7 +43,7 @@ const InputElement = ({
   if (options && options.length > 0) {
     filteredOptions = options.filter((option) => option.includes(inputValue));
   }
-  
+
   let input;
 
   switch (type) {
@@ -64,6 +64,7 @@ const InputElement = ({
     case 'tel':
     case 'number':
     case 'email':
+    case 'checkbox':
       input = (
         <input
           type={type}
@@ -72,6 +73,7 @@ const InputElement = ({
           value={inputValue}
           onClick={() => setShowDropdown(true)}
           onChange={handleInputChange}
+          // checked={() => setInputValue(true)}
           ref={inputRef}
           dir="rtl"
           required={required}
@@ -122,7 +124,7 @@ const InputElement = ({
             )}
           </div>
         </div>
-        <p className="m-2">{instruction}</p>
+        <p className="m-2 text-gray-400 text-sm">{instruction}</p>
       </div>
       <CustomLabel label={label} />
     </div>
