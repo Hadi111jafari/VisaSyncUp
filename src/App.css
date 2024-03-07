@@ -2,6 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
-  text-align: center;
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
+/* 
+html {
+  direction: rtl;
+}
+
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  direction: rtl;
+  margin: 0;
+} */
+.instruction {
+  border-bottom-left-radius: 200px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 200px;
+  border-bottom-right-radius: 0px;
+  padding: 89px 40px 113px;
+  border-top: solid #312e81;
+  border-bottom: solid #312e81;
+  background-color: #eeeeef;
+}
+
+/* 
+.danger-new {
+  background-color: #eeeeef;
+  border-color: #45a049;
+  font-weight: 400;
+  width: 85%;
+  border-bottom-left-radius: 200px;
+  border-top-right-radius: 200px;
+  padding: 20px 14px 20px 35px !important;
+  border-right-width: 2px;
+  border-top: none;
+  border-bottom: none;
+  border-left-width: 2px;
+}
+
+.alert-dismissable,
+.alert-dismissible {
+  padding-left: 35px;
+  padding-right: 15px;
+}
+.alert-dismissable,
+.alert-dismissible {
+  padding-left: 35px;
+  padding-right: 15px;
+}
+.alert-danger-new {
+  background-color: #eeeeef;
+  border-color: #ca4c1c;
+  font-weight: 400;
+  width: 85%;
+  border-bottom-left-radius: 200px;
+  border-top-right-radius: 200px;
+  padding: 20px 14px 20px 35px !important;
+  border-right-width: 2px;
+  border-top: none;
+  border-bottom: none;
+  border-left-width: 2px;
+}
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.ibox-content {
+  background-color: #ffffff;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0px;
+} */
