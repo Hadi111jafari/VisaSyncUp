@@ -4,9 +4,8 @@ import './App.css';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import HomePage from './pages/HomePage';
-import CheckVisaRequirements from './components/VisaApplication/CheckVisaRequirements';
-import FillVisaInformationForm from './components/VisaApplication/FillVisaInformationForm';
-import { LocalizationProvider } from '@mui/x-date-pickers/';
+import Form from './components/Form';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function App() {
@@ -17,8 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/request" element={<CheckVisaRequirements />} />
-          <Route path="/visa-form" element={<FillVisaInformationForm />} />
+          <Route path='/form' element={<Form />} />
         </Routes>
       </Router>
     </LocalizationProvider>
