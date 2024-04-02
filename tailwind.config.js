@@ -2,11 +2,12 @@
 module.exports = {
   // purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   // darkMode: false,
-  content: [
-    './public/**/*.html',
-    './src/**/*.{js,jsx,ts,tsx,vue}',
-  ],
+  content: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx,vue}'],
   theme: {
+    // colors: {
+    //   // bgColor: 'rgb(var(--color-bgColor) / <alpha-value>)',
+    //   // titleColor: 'rgb(var(--color-titleColor) / <alpha-value>)',
+    // },
     extend: {
       animation: {
         slideDown: 'pulse 0.5s ease-out',
@@ -20,5 +21,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
-
+};
