@@ -14,9 +14,6 @@ const Form = () => {
 
   const handleNext = () => {
     dispatch(nextStep());
-    if (step >= 2) {
-      setIsOpen(true);
-    }
   };
   const handlePrev = () => {
     dispatch(prevStep());
@@ -25,13 +22,13 @@ const Form = () => {
   return (
     <div>
       {step === 1 ? (
-        <RequirementsCheckStep step={step} handleNext={handleNext} />
+        <RequirementsCheckStep handleNext={handleNext} />
       ) : (
         <PersonalAndTravelInfoStep
           isOpen={isOpen}
           onClose={onClose}
           step={step}
-          handleNext={handleNext}
+          setIsOpen={setIsOpen}
           handlePrev={handlePrev}
         />
       )}

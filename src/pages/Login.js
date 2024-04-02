@@ -4,10 +4,9 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
 const Login = () => {
-  const { t } = useTranslation();
-
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const { t } = useTranslation();
 
   const handleLoginChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -22,7 +21,7 @@ const Login = () => {
       if (!token) {
         redirect('/');
       } else {
-        redirect('/dashboard');
+        redirect('/form');
       }
     } catch (error) {
       setError(error.response.data.message);
@@ -61,14 +60,14 @@ const Login = () => {
           <button
             dir="rtl"
             type="submit"
-            className="w-full bg-green-500 text-white py-2 rounded-full hover:bg-green-600  transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-full bg-slate-200 text-blue-600 text-center  font-semibold py-2 px-6 rounded-full hover:bg-blue-600 hover:text-slate-200 transition duration-300 ease-in-out transform hover:scale-105"
           >
             {t('Continue')}
           </button>
         </form>
-        <p dir="rtl">
-          {t("Don't have an account?")}{' '}
-          <Link to="/signup" className="text-gray-600 bold">
+        <p dir="rtl" className="m-2 text-slate-400">
+          {t("Don't have an account?")}
+          <Link to="/signup" className="text-slate-200 bold mr-2">
             {t('Sign up')}
           </Link>
         </p>

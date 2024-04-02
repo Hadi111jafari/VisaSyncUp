@@ -315,7 +315,6 @@ export const formFields = [
       type: 'text',
       label: 'ملیت',
       options: nationality,
-      // defaultValue: 'افغان',
       required: true,
     },
   },
@@ -338,7 +337,6 @@ export const formFields = [
       type: 'text',
       label: 'مرکز مراجعه ویزه',
       options: visaCenterLocation,
-      // defaultValue: 'کابل',
       instruction:
         'سفارت یا نمایندگی ایران که قصد تحویل مدارک و یا دریافت ویزه را دارید',
       required: true,
@@ -348,11 +346,10 @@ export const formFields = [
     id: 5,
     type: 'InputField',
     props: {
-      name: 'nationalityDuplicate', // Assuming this is intentionally duplicated for demonstration
+      name: 'nationalityDuplicate', 
       type: 'text',
       label: 'ملیت',
       options: nationality,
-      // defaultValue: 'افغان',
       required: true,
     },
   },
@@ -360,7 +357,7 @@ export const formFields = [
     id: 6,
     type: 'InputField',
     props: {
-      name: 'visaTypeDuplicate', // Assuming this is intentionally duplicated for demonstration
+      name: 'visaTypeDuplicate', 
       type: 'text',
       label: 'نوع ویزه ها',
       options: visaTypes,
@@ -417,7 +414,6 @@ export const formFields = [
       name: 'previousNationality',
       type: 'text',
       label: 'تابعیت قبلی',
-      // defaultValue: '',
       required: true,
     },
   },
@@ -429,7 +425,6 @@ export const formFields = [
       type: 'text',
       label: 'محل تولد',
       options: birthLocations,
-      // defaultValue: 'افغانستان',
       required: true,
     },
   },
@@ -471,7 +466,7 @@ export const formFields = [
       name: 'personalPhoto',
       required: true,
     },
-    label: 'عکس شخصی', // This is for the CustomLabel component
+    label: 'عکس شخصی', 
   },
   {
     id: 17,
@@ -557,7 +552,7 @@ export const formFields = [
     id: 25,
     type: 'InputField',
     props: {
-      name: 'passportTypeDuplicate', // Assuming this is intentionally duplicated for demonstration
+      name: 'passportTypeDuplicate', 
       type: 'text',
       label: 'نوع گذرنامه',
       options: passportTypes,
@@ -589,7 +584,7 @@ export const formFields = [
       name: 'passportPhoto',
       required: true,
     },
-    label: 'عکس گذرنامه', // This is for the CustomLabel component
+    label: 'عکس گذرنامه', 
   },
   {
     id: 29,
@@ -632,7 +627,7 @@ export const formFields = [
       name: 'passportStampPhoto',
       required: false,
     },
-    label: 'عکس مهر تمدید اعتبار گذرنامه', // This is for the CustomLabel component
+    label: 'عکس مهر تمدید اعتبار گذرنامه', 
   },
   {
     id: 33,
@@ -641,7 +636,7 @@ export const formFields = [
       name: 'residenceCard',
       required: false,
     },
-    label: 'کارت اقامت', // This is for the CustomLabel component
+    label: 'کارت اقامت', 
   },
   {
     id: 34,
@@ -650,7 +645,7 @@ export const formFields = [
       name: 'backOfResidenceCard',
       required: false,
     },
-    label: 'عکس پشت کارت اقامت', // This is for the CustomLabel component
+    label: 'عکس پشت کارت اقامت', 
   },
   {
     id: 35,
@@ -677,7 +672,7 @@ export const formFields = [
       name: 'residenceCardIfNecessary',
       required: false,
     },
-    label: 'کارت اقامت در صورت نیاز', // This is for the CustomLabel component
+    label: 'کارت اقامت در صورت نیاز', 
   },
   {
     id: 38,
