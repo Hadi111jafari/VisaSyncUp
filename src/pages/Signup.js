@@ -12,7 +12,6 @@ const Signup = () => {
     confirmPassword: '',
   });
   const [error, setError] = useState('');
-  const { t } = useTranslation();
 
   const handleSignupChange = (e) => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });

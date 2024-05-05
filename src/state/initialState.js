@@ -23,7 +23,7 @@ export const initialState = {
     birthDate: null,
     maritalStatus: '',
     jobTitle: '',
-    photo: '',
+    photo: 'kkkkkkkk',
     applicantPhoneNumber: '',
     applicantMobileNumber: '',
     email: '',

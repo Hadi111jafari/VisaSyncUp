@@ -6,7 +6,7 @@ import CustomDatePicker from './DatePicker';
 import CustomDropzone from './Dropzone';
 import Instructions from './Instructions';
 import { formFields, instructions } from './constants';
-import { updateFormData } from '../state/formSlice';
+import { updateFormData, uploadImage } from '../state/formSlice';
 import { toggleCheckbox } from '../state/formSlice';
 import FinalCheckModal from './FinalCheckModal';
 import { VscChecklist } from 'react-icons/vsc';
@@ -20,12 +20,19 @@ const PersonalAndTravelInfoStep = ({
   setIsOpen,
   handlePrev,
 }) => {
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
+  const [selectedFiles1, setSelectedFiles1] = useState([]);
+  const [selectedFiles2, setSelectedFiles2] = useState([]);
+  // const [preview, setPreview] = useState('');
   const formData = useSelector((state) => state.form.formData);
   const isChecked = formData.urgentRequest;
-
+  const photo = formData.photo
+  console.log("🚀 ~ photo:", photo)
   const dispatch = useDispatch();
+
+  const handlePreview1 = (name, files) => {
+    // dispatch(uploadImage({name, files}));
+    setSelectedFiles1(files)
+  };
 
   const handleChange = (name, value) => {
     dispatch(updateFormData({ name, value }));
@@ -67,8 +74,9 @@ const PersonalAndTravelInfoStep = ({
         return (
           <CustomDropzone
             key={fieldDetail.id}
-            selectedFiles={selectedFiles}
-            setSelectedFiles={setSelectedFiles}
+            selectedFiles={selectedFiles1}
+            // setSelectedFiles={setSelectedFiles}
+            handlePreview={handlePreview1}
             label={fieldDetail.label}
             {...fieldDetail.props}
           />
@@ -202,9 +210,7 @@ const PersonalAndTravelInfoStep = ({
         }
         costAndLocationInModal.push(
           <div className="flex mt-4 relative">
-            <p key={`costAndLocation-${field.id}-label`}>
-              {field.props.label}
-            </p>
+            <p key={`costAndLocation-${field.id}-label`}>{field.props.label}</p>
             <p
               key={`costAndLocation-${field.id}-value`}
               className={`mr-8 font-semibold ${
@@ -241,7 +247,7 @@ const PersonalAndTravelInfoStep = ({
     <>
       <div className="flex flex-col ">
         {renderSections()}
-        {step == 2 && (
+        {step === 2 && (
           <>
             <div className="sm:flex sm:gap-4 sm:mr-5 sm:mb-10 sm:ml-20 sm:mt-0 gap-4 mr-auto mb-10 ml-auto mt-0">
               <button
@@ -283,12 +289,14 @@ const PersonalAndTravelInfoStep = ({
                   X
                 </p>
                 <div className="flex">
-                  {selectedFiles[0]}
-                  {/* <img
-                    src={selectedFiles[0]}
-                    alt="Applicant's "
-                    className="w-20 h-20 border mb-2"
-                  /> */}
+                  {selectedFiles1.map((file, index) => (
+                    <img
+                      className='w-20 h-20'
+                      key={index}
+                      src={URL.createObjectURL(file)}
+                      alt={`Preview 1 - ${index}`}
+                    />
+                  ))}
                   <h1 className="mr-4 mt-5 text-slate-100 font-bold">
                     اطلاعات وارده شده مورد تائید شما می باشد ؟
                   </h1>

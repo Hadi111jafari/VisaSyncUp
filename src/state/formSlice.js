@@ -8,24 +8,32 @@ const formSlice = createSlice({
     updateFormData: (state, action) => {
       const { name, value } = action.payload;
       state.formData = {
-        ...state.formData, // Spread the existing formData object
-        [name]: value // Update the specified field
+        ...state.formData, 
+        [name]: value 
       };
     },
     toggleCheckbox: (state) => {
       state.formData = {
-        ...state.formData, // Spread the existing formData object
-        urgentRequest: !state.formData.urgentRequest // Toggle the urgentRequest field
+        ...state.formData, 
+        urgentRequest: !state.formData.urgentRequest 
+      };
+    },
+    uploadImage: (state, action) => {
+      const { name, value } = action.payload;
+      console.log("🚀 ~ name, value:", name, value)
+      state.formData = {
+        ...state.formData, 
+        [name]: value 
       };
     },
     nextStep: (state) => {
       state.step += 1;
       if (state.step === 2) {
         state.formData = {
-          ...state.formData, // Spread the existing formData object
-          nationalityDuplicate: state.formData.nationality, // Update nationalityDuplicate field
-          visaTypeDuplicate: state.formData.visaType, // Update visaTypeDuplicate field
-          passportTypeDuplicate: state.formData.passportType // Update passportTypeDuplicate field
+          ...state.formData, 
+          nationalityDuplicate: state.formData.nationality, 
+          visaTypeDuplicate: state.formData.visaType,
+          passportTypeDuplicate: state.formData.passportType 
         };
       }
     },
@@ -34,7 +42,6 @@ const formSlice = createSlice({
     },
     submitForm: (state) => {
       // handle form submission, e.g., making an API call
-      // No need to modify state here
     },
   },
 });
@@ -42,6 +49,7 @@ const formSlice = createSlice({
 export const {
   updateFormData,
   toggleCheckbox,
+  uploadImage,
   nextStep,
   prevStep,
 } = formSlice.actions;
