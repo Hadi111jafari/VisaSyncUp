@@ -6,7 +6,7 @@ import CustomDatePicker from './DatePicker';
 import CustomDropzone from './Dropzone';
 import Instructions from './Instructions';
 import { formFields, instructions } from './constants';
-import { updateFormData, uploadImage } from '../state/formSlice';
+import { updateFormData } from '../state/formSlice';
 import { toggleCheckbox } from '../state/formSlice';
 import FinalCheckModal from './FinalCheckModal';
 import { VscChecklist } from 'react-icons/vsc';
@@ -21,12 +21,11 @@ const PersonalAndTravelInfoStep = ({
   handlePrev,
 }) => {
   const [selectedFiles1, setSelectedFiles1] = useState([]);
-  const [selectedFiles2, setSelectedFiles2] = useState([]);
+  // const [selectedFiles2, setSelectedFiles2] = useState([]);
   // const [preview, setPreview] = useState('');
   const formData = useSelector((state) => state.form.formData);
   const isChecked = formData.urgentRequest;
-  const photo = formData.photo
-  console.log("🚀 ~ photo:", photo)
+  // const photo = formData.photo
   const dispatch = useDispatch();
 
   const handlePreview1 = (name, files) => {

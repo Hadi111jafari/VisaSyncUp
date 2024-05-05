@@ -12,7 +12,7 @@ const CustomDropzone = ({
     (acceptedFiles) => {
       handlePreview(label, acceptedFiles);
     },
-    [handlePreview]
+    [handlePreview, label]
   );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
