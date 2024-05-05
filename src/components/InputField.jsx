@@ -49,7 +49,7 @@ const InputField = ({
   let input;
 
   let rOnly
-  if (name == 'nationalityDuplicate' || name == 'visaTypeDuplicate' || name == 'passportTypeDuplicate') {
+  if (name === 'nationalityDuplicate' || name === 'visaTypeDuplicate' || name === 'passportTypeDuplicate') {
     rOnly = true
   }
   switch (type) {

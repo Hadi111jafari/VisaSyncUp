@@ -642,7 +642,7 @@ export const formFields = [
     id: 34,
     type: 'CustomDropzone',
     props: {
-      name: 'backOfResidenceCard',
+      name: 'backOfResidenceCardPhoto',
       required: false,
     },
     label: 'عکس پشت کارت اقامت', 
