@@ -1,1 +1,1 @@
-This project is build on top of Iran visa registration website to ease site availibility by checking and applying automatic registration of the original site.
+This project enhances the evisatraveller.mfa.ir website by automating registration and monitoring site availability.
