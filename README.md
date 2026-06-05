@@ -1,29 +1,104 @@
+# VisaSyncUp
 
-This project enhances the evisatraveller.mfa.ir website by automating registration and monitoring site availability.
+A React-based frontend for improving visa application workflows and portal monitoring around the `evisatraveller.mfa.ir` experience.
 
+VisaSyncUp provides a polished dashboard, authentication, application tracker, monitoring page, and a guided application form using a modern React + Tailwind UI.
 
-## Authentication Setup
+## Key Features
 
-This project uses Clerk for frontend-only authentication while keeping a custom login and signup UI.
+- **Custom Clerk authentication** with email/password signup, login, and email verification.
+- **Protected routing** for authenticated pages: dashboard, applications, monitor, profile, notifications, settings, and application form.
+- **Dashboard overview** with site status, application counts, monitor shortcuts, and quick action cards.
+- **Applications management** with filterable status views, expandable application details, and draft/resubmit flows.
+- **Monitoring UI** with uptime highlights, incident logs, status checks, and notification preference options.
+- **Multi-step submission flow** with requirements validation and personal/travel information entry.
+- **Internationalization support** for English and Persian (Farsi).
+- **Responsive layout** with desktop sidebar and mobile bottom navigation.
 
-1. Create a `.env` file in the project root.
-2. Add your Clerk publishable key:
+## Tech Stack
+
+- React 18
+- React Router v6
+- Clerk React
+- Redux Toolkit + Redux Thunk
+- Tailwind CSS
+- Material UI date pickers
+- React i18next
+- React Icons
+- Day.js
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- A Clerk account and a publishable key
+
+### Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/VisaSyncUp.git
+cd VisaSyncUp
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env` file in the project root:
 
 ```bash
 REACT_APP_CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxxxxxx
 ```
 
-3. In your Clerk dashboard, enable the login/signup methods you want (email/password is supported by the current UI).
+4. Configure Clerk in the dashboard:
+   - Enable email/password login if you want to use the current UI.
+   - Keep the publishable key available for the frontend.
 
-Notes:
+### Run Locally
 
-- The app uses custom forms and Clerk APIs, not Clerk's prebuilt auth pages.
-- Protected routes are handled client-side using Clerk session state.
+```bash
+npm start
+```
 
+The application will be available at `http://localhost:3000`.
 
+## Available Scripts
 
-![image](https://github.com/Hadi111jafari/VisaSyncUp/assets/93380132/605f9cb5-a6ab-406c-922d-cea32db15808)
+- `npm start` - Start the development server
+- `npm run build` - Build production assets
+- `npm test` - Run the test runner
+- `npm run eject` - Eject CRA configuration
 
+## Environment Variables
 
-![Screenshot 2024-03-29 180727](https://github.com/Hadi111jafari/VisaSyncUp/assets/93380132/63ab4152-8d1b-434b-8f16-a2e3bb0510cd)
+- `REACT_APP_CLERK_PUBLISHABLE_KEY` — required Clerk publishable key used by the frontend.
+
+## Project Structure
+
+- `src/`
+  - `index.js` — bootstraps Clerk, Redux, and i18n providers
+  - `App.js` — route definitions and protected/public route wrappers
+  - `pages/` — main application pages
+  - `components/` — reusable UI components and multi-step form sections
+  - `state/` — Redux slices and store configuration
+  - `locales/` — English and Farsi translation files
+
+## Notes
+
+- The current implementation is a frontend-focused UI layer. Application and monitoring data are presented as sample content and client-side state in the current version.
+- This repository is designed to be extended with real backend integration for automation, persistence, and live monitoring.
+
+## Possible Next Steps
+
+- Add backend APIs for persisting visa applications and monitor alerts
+- Integrate live availability polling for `evisatraveller.mfa.ir`
+- Implement notification delivery channels (email / SMS / push)
+- Expand the application form to collect actual visa application fields
+
+---
 

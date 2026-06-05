@@ -164,7 +164,7 @@ const PersonalAndTravelInfoStep = ({
         return t(optionLabel, optionLabel);
       };
 
-      if (formData[field.props.name] === null) {
+      if (formData[field.props.name] == null) {
         return null;
       }
       if (formData[field.props.name] instanceof dayjs) {
@@ -182,10 +182,10 @@ const PersonalAndTravelInfoStep = ({
         fieldValuesInModal = checkboxValue;
       }
 
-      if (field.id >= 5 && field.id <= 37) {
+      if (field.id >= 5 && field.id <= 38) {
         otherFieldsInModal.push(
           <div
-            className="mt-4 flex text-slate-100"
+            className="mt-4 flex text-slate-700"
             key={`111field-${field.id}`}
           >
             <p className="flex-1" key={`label-${field.id}`}>
@@ -261,7 +261,7 @@ const PersonalAndTravelInfoStep = ({
     e.preventDefault();
     onClose();
     if (onFormSubmitted) {
-      onFormSubmitted();
+      onFormSubmitted(formData);
     }
   };
   useEffect(() => {
@@ -377,55 +377,91 @@ const PersonalAndTravelInfoStep = ({
       )}
 
       <div className="flex">
-        <div className="relative z-10 ">
+        <div className="relative z-10 w-full">
           <FinalCheckModal
             open={isOpen}
             onClose={onClose}
             handleSubmit={handleSubmit}
           >
-            <div className="bg-slate-500">
-              <div className="m-12">
-                <p
-                  dir="ltr"
-                  onClick={onClose}
-                  className="cursor-pointer text-slate-200"
-                >
-                  X
-                </p>
-                <div className="flex">
-                  {Object.values(selectedFilesByField)
-                    .flatMap((entry) => entry.files || [])
-                    .map((file, index) => (
-                      <img
-                        className="h-20 w-20"
-                        key={index}
-                        src={URL.createObjectURL(file)}
-                        alt={`Preview 1 - ${index}`}
-                      />
-                    ))}
-                  <h1 className="mr-4 mt-5 font-bold text-slate-100">
+            <div className="space-y-6">
+              <div className="flex flex-col gap-4 rounded-[28px] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.35em] text-slate-500">
+                    {t("app.shared.actions.confirm")}
+                  </p>
+                  <h2 className="mt-3 text-2xl font-black text-slate-900">
                     {t("app.personalTravel.finalCheckQuestion")}
-                  </h1>
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+                    {t("app.personalTravel.reviewSummary")}
+                  </p>
                 </div>
-                <hr />
-                {otherFieldsInModal}
+                {/* close button moved into modal shell for consistent top-right placement */}
               </div>
-            </div>
-            <div className="relative ml-12 mr-12 mt-2">
-              <div className="flex flex-col">
-                {costAndLocationInModal}
-                <div className="">
-                  <VscChecklist
-                    key={1}
-                    size={70}
-                    className="absolute left-0 top-4 text-slate-500"
-                  />
+
+              <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+                <div className="space-y-6">
+                  <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {t("app.personalTravel.reviewDetailsTitle")}
+                    </h3>
+                    <div className="mt-5 space-y-4 text-slate-700">
+                      {otherFieldsInModal}
+                    </div>
+                  </div>
+
+                  <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {t("app.personalTravel.costAndLocationTitle")}
+                    </h3>
+                    <div className="mt-4 space-y-4 text-slate-700">
+                      {costAndLocationInModal}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-4 flex-wrap border bg-slate-100 text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-                odio a? Alias quo sit cum nobis placeat nam, voluptate error
-                doloremque, suscipit dignissimos eos fugiat distinctio nihil.
+
+                <div className="space-y-6">
+                  <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className="text-lg font-semibold text-slate-900">
+                          {t("app.personalTravel.uploadedDocsTitle")}
+                        </h3>
+                        <p className="mt-2 text-sm text-slate-500">
+                          {t("app.personalTravel.uploadedDocsSubtitle")}
+                        </p>
+                      </div>
+                      <VscChecklist size={28} className="text-slate-500" />
+                    </div>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                      {Object.values(selectedFilesByField)
+                        .flatMap((entry) => entry.files || [])
+                        .map((file, index) => (
+                          <div
+                            key={index}
+                            className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100"
+                          >
+                            <img
+                              className="h-28 w-full object-cover"
+                              src={URL.createObjectURL(file)}
+                              alt={`Preview ${index + 1}`}
+                            />
+                          </div>
+                        ))}
+                      {!Object.values(selectedFilesByField).flatMap(
+                        (entry) => entry.files || [],
+                      ).length && (
+                        <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-5 text-sm text-slate-500">
+                          {t("app.personalTravel.noUploadsYet")}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-6 text-sm leading-6 text-slate-600 shadow-sm">
+                    {t("app.personalTravel.reviewNote")}
+                  </div>
+                </div>
               </div>
             </div>
           </FinalCheckModal>

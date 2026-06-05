@@ -39,12 +39,16 @@ const FormStepper = ({ currentStep = 1 }) => {
         <div className="relative">
           <div className="absolute inset-x-0 top-5 h-[2px] border-t-2 border-dashed border-[#00B8C84D]" />
           <div
-            className="absolute left-0 top-5 h-[2px] bg-[#00979F] transition-all duration-300"
+            className="absolute top-5 h-[2px] bg-[#00979F] transition-all duration-300"
             style={{
               width: `${((boundedStep - 1) / (formProgressSteps.length - 1)) * 100}%`,
+              [isRTL ? "right" : "left"]: 0,
+              [isRTL ? "left" : "right"]: "auto",
             }}
           />
-          <div className="relative grid grid-cols-5 items-start gap-2">
+          <div
+            className={`relative grid grid-cols-5 items-start gap-2 ${isRTL ? "rtl" : "ltr"}`}
+          >
             {formProgressSteps.map((item, idx) => {
               const stepNumber = idx + 1;
               const isCompleted = stepNumber < boundedStep;

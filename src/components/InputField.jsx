@@ -134,18 +134,29 @@ const InputField = ({
       />
     );
   } else if (type === "checkbox") {
+    const knobPositionClass = isRTL
+      ? isChecked
+        ? "left-1"
+        : "right-1"
+      : isChecked
+        ? "right-1"
+        : "left-1";
+
     input = (
-      <label className="flex min-h-12 cursor-pointer items-center justify-between rounded-[14px] border border-[#00B8C833] bg-white px-4 py-3 text-sm font-semibold text-[#1A6370]">
-        <span>{t("app.inputField.urgentRequest")}</span>
+      <label
+        className="flex min-h-12 cursor-pointer items-center justify-between gap-3 rounded-[14px] border border-[#00B8C833] bg-white px-4 py-3 text-sm font-semibold text-[#1A6370]"
+        dir={direction}
+      >
+        <span className="min-w-0 flex-1 break-words">
+          {t("app.inputField.urgentRequest")}
+        </span>
         <span
-          className={`relative inline-flex h-7 w-12 items-center rounded-full transition ${
+          className={`relative inline-flex h-7 w-12 flex-shrink-0 rounded-full transition ${
             isChecked ? "bg-[#00979F]" : "bg-[#D1EDEE]"
           }`}
         >
           <span
-            className={`inline-block h-5 w-5 transform rounded-full bg-white transition ${
-              isChecked ? "translate-x-1" : "translate-x-6"
-            }`}
+            className={`absolute top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white transition ${knobPositionClass}`}
           />
         </span>
         <input

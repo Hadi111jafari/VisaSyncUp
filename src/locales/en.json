@@ -36,7 +36,7 @@
   "Login failed. Please try again.": "Login failed. Please try again.",
   "app": {
     "layout": {
-      "portalTitle": "VisaSync",
+      "portalTitle": "Control Center",
       "nav": {
         "dashboard": "Dashboard",
         "applications": "Applications",
@@ -120,6 +120,13 @@
     },
     "personalTravel": {
       "finalCheckQuestion": "Is the information you provided correct?",
+      "reviewSummary": "Please review your answers and uploaded documents carefully. When you confirm, your form data will be ready to submit once backend integration is available.",
+      "reviewDetailsTitle": "Review details",
+      "costAndLocationTitle": "Visa cost & location",
+      "uploadedDocsTitle": "Uploaded documents",
+      "uploadedDocsSubtitle": "Review the files you attached for your application.",
+      "noUploadsYet": "No uploaded documents yet.",
+      "reviewNote": "Confirm only when you have checked that every field and document is correct.",
       "mobileStep": "Step 2 of 5"
     },
     "applications": {
@@ -383,12 +390,15 @@
   "homepage": {
     "nav": {
       "signIn": "Sign In",
+      "features": "Features",
+      "howItWorks": "How it works",
+      "monitor": "Monitoring",
       "getStarted": "Get Started"
     },
     "hero": {
       "badge": "Monitoring evisatraveller.mfa.ir live",
       "title": "Your Iran eVisa,<br /><span class=\"hl\">submitted automatically.</span>",
-      "subtitle": "Stop refreshing manually. eVisaAuto watches the MFA portal 24/7, detects open slots the instant they appear, and submits your pre-filled application before anyone else can.",
+      "subtitle": "Stop refreshing manually. VisaSync watches the MFA portal 24/7, detects open slots the instant they appear, and submits your pre-filled application before anyone else can.",
       "ctaPrimary": "Start for Free →",
       "ctaSecondary": "I have an account",
       "statusOnline": "Site Online",
@@ -476,7 +486,7 @@
       "button": "Create Free Account →"
     },
     "footer": {
-      "copyright": "© 2026 eVisaAuto · Not affiliated with",
+      "copyright": "© 2026 VisaSync · Not affiliated with",
       "disclaimer": "Built to enhance the official MFA eVisa portal experience."
     }
   }

@@ -40,44 +40,177 @@ const styles = `
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
+    gap: 24px;
     padding: 0 40px;
-    height: 68px;
-    background: rgba(255,255,255,0.82);
-    backdrop-filter: blur(16px);
+    height: 72px;
+    background: rgba(255,255,255,0.93);
+    backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(0,184,200,0.15);
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s, transform 0.3s;
   }
-  .hp-nav.scrolled { box-shadow: 0 4px 32px rgba(0,184,200,0.12); }
+  .hp-nav.scrolled {
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    transform: translateY(-1px);
+  }
 
   .hp-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-family: 'Sora', sans-serif;
+    color: var(--text-dark);
+  }
+  .hp-logo-text {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     font-weight: 800;
-    font-size: 1.15rem;
-    color: var(--teal-dark);
+    font-size: 1.1rem;
     letter-spacing: -0.5px;
   }
-  [dir="rtl"] .hp-logo {
+  .hp-logo-text span {
+    color: var(--teal-dark);
+  }
+  [dir="rtl"] .hp-logo,
+  [dir="rtl"] .hp-logo-text {
     font-family: 'Vazirmatn', sans-serif;
     letter-spacing: 0;
   }
   .hp-logo-icon {
-    width: 36px; height: 36px;
+    width: 38px; height: 38px;
     background: linear-gradient(135deg, var(--teal), var(--teal-dark));
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     color: white;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 12px rgba(0,184,200,0.35);
+    font-size: 1.15rem;
+    box-shadow: 0 6px 18px rgba(0,184,200,0.28);
+  }
+
+  .hp-nav-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+  }
+  .hp-nav-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+  }
+  .hp-nav-links a:hover {
+    color: var(--teal-dark);
+    transform: translateY(-1px);
+  }
+  .hp-nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 0;
+    background: var(--teal);
+    transition: width 0.2s ease;
+  }
+  .hp-nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .hp-nav-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 8px;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+  }
+  .hp-nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 4px auto;
+    background: var(--text-dark);
+    border-radius: 999px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .hp-nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hp-nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hp-nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .hp-nav-actions { display: flex; gap: 12px; align-items: center; }
   .hp-lang-switch { display: flex; gap: 4px; align-items: center; }
+
+  @media(max-width: 980px) {
+    .hp-nav {
+      grid-template-columns: auto auto;
+      padding: 0 20px;
+      gap: 12px;
+    }
+    .hp-nav-links {
+      display: none;
+    }
+    .hp-nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 16px;
+      padding: 22px 24px 24px;
+      background: rgba(255,255,255,0.98);
+      border-bottom: 1px solid rgba(0,184,200,0.15);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.08);
+      backdrop-filter: blur(16px);
+      z-index: 90;
+    }
+    .hp-nav-toggle {
+      display: flex;
+    }
+    .hp-nav-actions {
+      gap: 10px;
+      align-items: center;
+    }
+    .hp-nav-links a {
+      padding: 10px 0;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .btn-ghost,
+    .btn-primary {
+      padding: 8px 14px;
+      font-size: 0.88rem;
+    }
+  }
+
+  @media(max-width: 680px) {
+    .hp-nav {
+      height: auto;
+      padding: 12px 18px;
+      gap: 10px;
+    }
+    .hp-nav-actions {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+  }
   .hp-lang-switch button {
     padding: 4px 10px;
     border: 1.5px solid var(--teal);
@@ -578,6 +711,7 @@ export default function HomePage({ onSignIn, onSignUp }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -621,8 +755,38 @@ export default function HomePage({ onSignIn, onSignUp }) {
         <nav className={`hp-nav${scrolled ? " scrolled" : ""}`}>
           <div className="hp-logo">
             <div className="hp-logo-icon">✈</div>
-            eVisa<span style={{ color: "var(--teal)" }}>Auto</span>
+            <div className="hp-logo-text">
+              Visa<span>Sync</span>
+            </div>
           </div>
+
+          <button
+            type="button"
+            className={`hp-nav-toggle${mobileMenuOpen ? " open" : ""}`}
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <div className={`hp-nav-links${mobileMenuOpen ? " open" : ""}`}>
+            <a href="#features" onClick={() => setMobileMenuOpen(false)}>
+              {t("homepage.nav.features")}
+            </a>
+            <a href="#steps" onClick={() => setMobileMenuOpen(false)}>
+              {t("homepage.nav.howItWorks")}
+            </a>
+            <a href="#monitor" onClick={() => setMobileMenuOpen(false)}>
+              {t("homepage.nav.monitor")}
+            </a>
+            <a href="#cta" onClick={() => setMobileMenuOpen(false)}>
+              {t("homepage.nav.getStarted")}
+            </a>
+          </div>
+
           <div className="hp-nav-actions">
             <div className="hp-lang-switch">
               <button
@@ -711,7 +875,7 @@ export default function HomePage({ onSignIn, onSignUp }) {
         </div>
 
         {/* ── FEATURES ── */}
-        <section className="hp-section">
+        <section className="hp-section" id="features">
           <div className="hp-section-label fade-up">
             {t("homepage.features.label")}
           </div>
@@ -737,7 +901,7 @@ export default function HomePage({ onSignIn, onSignUp }) {
         </section>
 
         {/* ── HOW IT WORKS ── */}
-        <div className="hp-how">
+        <div className="hp-how" id="steps">
           <div className="hp-how-inner">
             <div className="hp-section-label fade-up">
               {t("homepage.steps.label")}
@@ -766,7 +930,7 @@ export default function HomePage({ onSignIn, onSignUp }) {
         </div>
 
         {/* ── MONITOR PANEL ── */}
-        <div className="hp-monitor">
+        <div className="hp-monitor" id="monitor">
           <div className="fade-up">
             <div className="hp-section-label">
               {t("homepage.monitor.label")}
@@ -831,7 +995,7 @@ export default function HomePage({ onSignIn, onSignUp }) {
         </div>
 
         {/* ── CTA BANNER ── */}
-        <div style={{ padding: "0 24px 80px" }}>
+        <div style={{ padding: "0 24px 80px" }} id="cta">
           <div className="hp-cta-banner fade-up">
             <h2>{t("homepage.cta.title")}</h2>
             <p>{t("homepage.cta.subtitle")}</p>
