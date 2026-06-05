@@ -160,7 +160,42 @@
       "timeline": "Status history",
       "documents": "Attached documents",
       "downloadPdf": "Download approval PDF",
-      "reapply": "Reapply"
+      "reapply": "Reapply",
+
+      "samples": {
+        "pending": {
+          "visaType": "🇦🇫 Tourist 30-day",
+          "timeline": [
+            "Application submitted",
+            "Documents review",
+            "Awaiting result"
+          ],
+          "docs": ["Passport photo", "Passport scan"]
+        },
+        "approved": {
+          "visaType": "🇦🇫 Pilgrimage",
+          "timeline": [
+            "Application submitted",
+            "Final approval",
+            "Ready to download approval"
+          ],
+          "docs": ["Passport photo", "Passport scan", "Payment confirmation"]
+        },
+        "rejected": {
+          "visaType": "🇦🇫 Business",
+          "reason": "Low passport image quality",
+          "timeline": [
+            "Application submitted",
+            "Review",
+            "Application rejected"
+          ],
+          "docs": ["Passport photo", "Passport scan"]
+        },
+        "draft": {
+          "visaType": "🇮🇷 Tourist",
+          "timeline": ["Initial information saved"]
+        }
+      }
     },
     "dashboard": {
       "cards": {
@@ -348,42 +383,6 @@
         "stopMonitor": "Stop monitoring",
         "clearHistory": "Clear history",
         "deleteAccount": "Delete account"
-      }
-    },
-    "applications": {
-      "samples": {
-        "pending": {
-          "visaType": "🇦🇫 Tourist 30-day",
-          "timeline": [
-            "Application submitted",
-            "Documents review",
-            "Awaiting result"
-          ],
-          "docs": ["Passport photo", "Passport scan"]
-        },
-        "approved": {
-          "visaType": "🇦🇫 Pilgrimage",
-          "timeline": [
-            "Application submitted",
-            "Final approval",
-            "Ready to download approval"
-          ],
-          "docs": ["Passport photo", "Passport scan", "Payment confirmation"]
-        },
-        "rejected": {
-          "visaType": "🇦🇫 Business",
-          "reason": "Low passport image quality",
-          "timeline": [
-            "Application submitted",
-            "Review",
-            "Application rejected"
-          ],
-          "docs": ["Passport photo", "Passport scan"]
-        },
-        "draft": {
-          "visaType": "🇮🇷 Tourist",
-          "timeline": ["Initial information saved"]
-        }
       }
     }
   },

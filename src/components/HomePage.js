@@ -752,64 +752,216 @@ export default function HomePage({ onSignIn, onSignUp }) {
       <style>{styles}</style>
       <div className="hp-root" dir={isRTL ? "rtl" : "ltr"}>
         {/* ── NAV ── */}
-        <nav className={`hp-nav${scrolled ? " scrolled" : ""}`}>
-          <div className="hp-logo">
-            <div className="hp-logo-icon">✈</div>
-            <div className="hp-logo-text">
-              Visa<span>Sync</span>
-            </div>
-          </div>
+        <>
+          {/* Backdrop */}
+          <div
+            className={`fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm transition-opacity duration-200 lg:hidden ${
+              mobileMenuOpen
+                ? "pointer-events-auto opacity-100"
+                : "pointer-events-none opacity-0"
+            }`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
 
-          <button
-            type="button"
-            className={`hp-nav-toggle${mobileMenuOpen ? " open" : ""}`}
-            onClick={() => setMobileMenuOpen((open) => !open)}
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          <nav
+            className={`fixed left-4 right-4 top-4 z-50
+      rounded-2xl border border-cyan-100
+      bg-white/90 shadow-lg
+      backdrop-blur-xl transition-all duration-300
+      ${scrolled ? "shadow-xl" : ""}
+    `}
           >
-            <span />
-            <span />
-            <span />
-          </button>
-
-          <div className={`hp-nav-links${mobileMenuOpen ? " open" : ""}`}>
-            <a href="#features" onClick={() => setMobileMenuOpen(false)}>
-              {t("homepage.nav.features")}
-            </a>
-            <a href="#steps" onClick={() => setMobileMenuOpen(false)}>
-              {t("homepage.nav.howItWorks")}
-            </a>
-            <a href="#monitor" onClick={() => setMobileMenuOpen(false)}>
-              {t("homepage.nav.monitor")}
-            </a>
-            <a href="#cta" onClick={() => setMobileMenuOpen(false)}>
-              {t("homepage.nav.getStarted")}
-            </a>
-          </div>
-
-          <div className="hp-nav-actions">
-            <div className="hp-lang-switch">
+            <div className="flex h-16 items-center justify-between px-4 lg:px-8">
+              {/* Logo */}
               <button
-                className={i18n.language === "en" ? "active" : ""}
-                onClick={() => changeLang("en")}
+                className="text-xl font-bold tracking-tight"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
-                EN
+                Visa<span className="text-cyan-600">Sync</span>
               </button>
+
+              {/* Desktop Navigation */}
+              <div className="hidden items-center gap-8 lg:flex">
+                <a
+                  href="#features"
+                  className="font-medium text-slate-700 transition hover:text-cyan-600"
+                >
+                  {t("homepage.nav.features")}
+                </a>
+
+                <a
+                  href="#steps"
+                  className="font-medium text-slate-700 transition hover:text-cyan-600"
+                >
+                  {t("homepage.nav.howItWorks")}
+                </a>
+
+                <a
+                  href="#monitor"
+                  className="font-medium text-slate-700 transition hover:text-cyan-600"
+                >
+                  {t("homepage.nav.monitor")}
+                </a>
+
+                <a
+                  href="#cta"
+                  className="font-medium text-slate-700 transition hover:text-cyan-600"
+                >
+                  {t("homepage.nav.getStarted")}
+                </a>
+              </div>
+
+              {/* Desktop Actions */}
+              <div className="hidden items-center gap-3 lg:flex">
+                <div className="flex items-center gap-2">
+                  <button
+                    className={`rounded-lg border px-3 py-1.5 text-sm font-semibold transition ${
+                      i18n.language === "en"
+                        ? "border-cyan-600 bg-cyan-600 text-white"
+                        : "border-cyan-300 text-cyan-700"
+                    }`}
+                    onClick={() => changeLang("en")}
+                  >
+                    EN
+                  </button>
+
+                  <button
+                    className={`rounded-lg border px-3 py-1.5 text-sm font-semibold transition ${
+                      i18n.language === "fa"
+                        ? "border-cyan-600 bg-cyan-600 text-white"
+                        : "border-cyan-300 text-cyan-700"
+                    }`}
+                    onClick={() => changeLang("fa")}
+                  >
+                    FA
+                  </button>
+                </div>
+
+                <button
+                  onClick={onSignIn}
+                  className="rounded-xl border border-cyan-300 px-4 py-2 text-cyan-700 transition hover:bg-cyan-50"
+                >
+                  {t("Login")}
+                </button>
+
+                <button
+                  onClick={onSignUp}
+                  className="rounded-xl bg-cyan-600 px-5 py-2 text-white shadow-md transition hover:bg-cyan-700"
+                >
+                  {t("Sign Up")}
+                </button>
+              </div>
+
+              {/* Mobile Hamburger */}
               <button
-                className={i18n.language === "fa" ? "active" : ""}
-                onClick={() => changeLang("fa")}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="flex flex-col justify-center gap-1.5 p-2 lg:hidden"
+                aria-label="Menu"
               >
-                FA
+                <span
+                  className={`block h-0.5 w-6 rounded-full bg-slate-800 transition-all duration-300 ${
+                    mobileMenuOpen ? "translate-y-2 rotate-45" : ""
+                  }`}
+                />
+
+                <span
+                  className={`block h-0.5 w-6 rounded-full bg-slate-800 transition-all duration-300 ${
+                    mobileMenuOpen ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+
+                <span
+                  className={`block h-0.5 w-6 rounded-full bg-slate-800 transition-all duration-300 ${
+                    mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""
+                  }`}
+                />
               </button>
             </div>
-            <button className="btn-ghost" onClick={onSignIn}>
-              {t("Login")}
-            </button>
-            <button className="btn-primary" onClick={onSignUp}>
-              {t("Sign Up")}
-            </button>
-          </div>
-        </nav>
+
+            {/* Mobile Menu */}
+            <div
+              className={`overflow-hidden transition-all duration-300 lg:hidden ${
+                mobileMenuOpen
+                  ? "max-h-[500px] border-t border-cyan-100"
+                  : "max-h-0"
+              }`}
+            >
+              <div className="space-y-2 p-4">
+                <a
+                  href="#features"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block rounded-xl bg-cyan-50 px-4 py-3 font-medium"
+                >
+                  {t("homepage.nav.features")}
+                </a>
+
+                <a
+                  href="#steps"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block rounded-xl bg-cyan-50 px-4 py-3 font-medium"
+                >
+                  {t("homepage.nav.howItWorks")}
+                </a>
+
+                <a
+                  href="#monitor"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block rounded-xl bg-cyan-50 px-4 py-3 font-medium"
+                >
+                  {t("homepage.nav.monitor")}
+                </a>
+
+                <a
+                  href="#cta"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block rounded-xl bg-cyan-50 px-4 py-3 font-medium"
+                >
+                  {t("homepage.nav.getStarted")}
+                </a>
+
+                <div className="border-t border-slate-200 pt-3">
+                  <div className="mb-3 flex gap-2">
+                    <button
+                      onClick={() => changeLang("en")}
+                      className={`flex-1 rounded-xl py-2 font-medium ${
+                        i18n.language === "en"
+                          ? "bg-cyan-600 text-white"
+                          : "bg-cyan-50"
+                      }`}
+                    >
+                      EN
+                    </button>
+
+                    <button
+                      onClick={() => changeLang("fa")}
+                      className={`flex-1 rounded-xl py-2 font-medium ${
+                        i18n.language === "fa"
+                          ? "bg-cyan-600 text-white"
+                          : "bg-cyan-50"
+                      }`}
+                    >
+                      FA
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={onSignIn}
+                    className="mb-2 w-full rounded-xl border border-cyan-300 py-3 text-cyan-700"
+                  >
+                    {t("Login")}
+                  </button>
+
+                  <button
+                    onClick={onSignUp}
+                    className="w-full rounded-xl bg-cyan-600 py-3 text-white shadow-md"
+                  >
+                    {t("Sign Up")}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </>
 
         {/* ── HERO ── */}
         <section className="hp-hero">
