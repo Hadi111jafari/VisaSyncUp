@@ -1,15 +1,18 @@
-import React from 'react';
-import { IoIosSave } from 'react-icons/io';
+import React from "react";
+import { IoIosSave } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const Button = ({ type, handleNext }) => {
+  const { t } = useTranslation();
+
   return (
-    <div >
+    <div>
       <button
         type={type}
         onClick={handleNext}
-        className='flex sm:w-[315px] w-full justify-center mt-2 hover:text-white text-blue-600 font-bold border rounded-full py-2 px-4 hover:bg-blue-600  transition duration-300 ease-in-out transform hover:scale-105'
+        className="mt-2 flex w-full transform justify-center rounded-full border px-4 py-2 font-bold text-blue-600 transition duration-300  ease-in-out hover:scale-105 hover:bg-blue-600 hover:text-white sm:w-[315px]"
       >
-        ثبت و ادامه
+        {t("app.shared.actions.submitAndContinue")}
         <span className="ml-2 mt-0.5">
           <IoIosSave />
         </span>

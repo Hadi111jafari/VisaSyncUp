@@ -1,20 +1,15 @@
-import React from 'react';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-const CustomLabel = ({ label }) => {
+const CustomLabel = ({ label, required = true }) => {
+  const { t } = useTranslation();
+  const displayLabel = t(label, label);
+
   return (
-    <div className="sm:col-span-3 col-span-4 ml-2 sm:mt-2 mt-2 sm:text-end text-end ">
-      <label className="text-indigo-900 text-sm font-semibold mb-2">
-        {label === 'عکس پشت کارت اقامت' ||
-        label === 'کارت اقامت در صورت نیاز"' ||
-        label === 'کارت اقامت' ||
-        label === 'کد پستی' ||
-        label === 'فوری' ||
-        label === 'عکس مهر تمدید اعتبار گذرنامه' ? (
-          <span></span>
-        ) : (
-          <span className="text-red-500" >* </span>
-        )}
-        {label}
+    <div className="col-span-4 ml-2 mt-2 text-end sm:col-span-3 sm:mt-2 sm:text-end ">
+      <label className="mb-2 text-sm font-semibold text-indigo-900">
+        {required && <span className="text-red-500">* </span>}
+        {displayLabel}
       </label>
     </div>
   );

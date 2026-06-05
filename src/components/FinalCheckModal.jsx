@@ -1,32 +1,39 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React from "react";
+import ReactDom from "react-dom";
+import { useTranslation } from "react-i18next";
 
 const FinalCheckModal = ({ open, children, onClose, handleSubmit }) => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "fa";
+  const direction = isRTL ? "rtl" : "ltr";
   if (!open) return null;
 
   return ReactDom.createPortal(
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-70 z-40" />
-      <div dir='rtl' className="flex flex-col max-h-96 overflow-y-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 custom-scrollbar">
+      <div className="fixed bottom-0 left-0 right-0 top-0 z-40 bg-black opacity-70" />
+      <div
+        dir={direction}
+        className="custom-scrollbar fixed left-1/2 top-1/2 z-50 flex max-h-96 -translate-x-1/2 -translate-y-1/2 transform flex-col overflow-y-auto bg-white"
+      >
         {children}
-        <div className="flex m-8">
+        <div className="m-8 flex">
           <button
             onClick={onClose}
-            className="border rounded-full px-8 pb-1 transition duration-300 ease-in-out transform hover:scale-105"
+            className="transform rounded-full border px-8 pb-1 transition duration-300 ease-in-out hover:scale-105"
           >
-            ویرایش
+            {t("app.shared.actions.edit")}
           </button>
           <button
             type="submit"
             onClick={handleSubmit}
-            className="bg-blue-900 text-white border rounded-full px-14 pb-1 mr-4 transition duration-300 ease-in-out transform hover:scale-105"
+            className="mr-4 transform rounded-full border bg-blue-900 px-14 pb-1 text-white transition duration-300 ease-in-out hover:scale-105"
           >
-            تائید
+            {t("app.shared.actions.confirm")}
           </button>
         </div>
       </div>
     </>,
-    document.getElementById('portal')
+    document.getElementById("portal"),
   );
 };
 

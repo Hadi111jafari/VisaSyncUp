@@ -1,49 +1,63 @@
-import React from 'react';
-import { FaDotCircle } from 'react-icons/fa';
-import { FaFlag } from 'react-icons/fa6';
+import React from "react";
+import { FaFlag } from "react-icons/fa6";
+import { FiInfo, FiFileText } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 const Instructions = ({ title, step, instructions }) => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "fa";
+  const safeInstructions = Array.isArray(instructions) ? instructions : [];
+  const splitIndex = Math.max(1, Math.ceil(safeInstructions.length / 2));
+  const docs = safeInstructions.slice(0, splitIndex);
+  const notes = safeInstructions.slice(splitIndex);
+
   return (
     <div
-      className="sm:col-start-8 sm:col-span-5 text-white sm:h-fit h-fit instruction"
-      dir="rtl"
+      className="h-fit sm:col-span-6 sm:col-start-7"
+      dir={isRTL ? "rtl" : "ltr"}
     >
-      <div>
-        <h2 className="text-slate-200 animate-bounce">{step}</h2>
-        <h1 dir="rtl" className="text-lg sm:text-2xl flex mb-2 font-semi-bold">
-          <span className=" ml-2 mt-2">
-            <FaFlag />
-          </span>
-          <span className="sm:mb-2 mb-1">{title}</span>
-        </h1>
+      <div className="rounded-[20px] border border-l-4 border-[#00B8C833] border-l-[#00B8C8] bg-white p-5 shadow-[0_2px_8px_rgba(0,120,140,0.08)]">
+        {step && (
+          <p className="text-xs font-bold text-[#1A6370]">{t(step, step)}</p>
+        )}
+        <h2 className="mt-2 flex items-center gap-2 text-lg font-black text-[#0D3B42] sm:text-xl">
+          <FaFlag className="text-[#00B8C8]" />
+          <span>{t(title, title)}</span>
+        </h2>
 
-        <ul>
-          {instructions.map((instruction, index) => (
-            <li key={index} className="flex text-slate-200 text-sm">
-              <FaDotCircle className="sm:size-2 mt-2 ml-2 sm:ml-2 sm:mt-2.5" />
-              {instruction}
-            </li>
-          ))}
-        </ul>
-        {step === 'گام چهارم' ? (
-          <div></div>
-        ) : (
-          <div className="flex text-slate-400">
-            <p className="mt-8 sm:mt-8 ">مرحله بعدی</p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 mt-9 mr-2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
-              />
-            </svg>
+        <div className="mt-5">
+          <h3 className="mb-2 flex items-center gap-2 text-sm font-extrabold text-[#007A8A]">
+            <FiFileText />
+            <span>{t("app.shared.instructions.requiredDocs")}</span>
+          </h3>
+          <ul className="space-y-2">
+            {docs.map((instruction, index) => (
+              <li
+                key={`doc-${index}`}
+                className="rounded-xl bg-[#F5FEFF] px-3 py-2 text-[13px] leading-[1.85] text-[#1A6370]"
+              >
+                {t(instruction, instruction)}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {notes.length > 0 && (
+          <div className="mt-4">
+            <h3 className="mb-2 flex items-center gap-2 text-sm font-extrabold text-[#007A8A]">
+              <FiInfo />
+              <span>{t("app.shared.instructions.importantNotes")}</span>
+            </h3>
+            <ul className="space-y-2">
+              {notes.map((instruction, index) => (
+                <li
+                  key={`note-${index}`}
+                  className="rounded-xl border border-[#F59E0B33] bg-[#FFFBEB] px-3 py-2 text-[13px] leading-[1.85] text-[#92400E]"
+                >
+                  {t(instruction, instruction)}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>

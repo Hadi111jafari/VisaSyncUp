@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-*,html, ::before, ::after {
+*,
+html,
+::before,
+::after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -35,14 +38,9 @@
 } */
 
 body {
-  font-family: sans-serif;
+  font-family: "DM Sans", "Vazirmatn", sans-serif;
   margin: 0;
-  /* background-color: azure; */
-  background-color: #5fccd3;
-  /* background-color: rgb(220, 235, 236); */
-  /* background-color: #0078d7; */
-  /* background-color: #312e81; */
-  /* background-color: rgb(3 7 18); */
+  background-color: #f5feff;
 }
 
 .instruction {
@@ -51,8 +49,8 @@ body {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 200px;
   padding: 89px 40px 113px;
-  border-top: solid  white;
-  border-bottom: solid  white;
+  border-top: solid white;
+  border-bottom: solid white;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

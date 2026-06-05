@@ -1,7 +1,631 @@
 {
-    "Login": "ورود",
-    "Password": "پسورد",
-    "Sign up": "ثبت",
-    "Continue": "ادامه",
-    "Don't have an account?": "حساب کاربری ندارید؟"
+  "Login": "ورود",
+  "Sign Up": "ثبت‌ نام",
+  "Sign up": "ثبت‌ نام",
+  "Continue": "ادامه",
+  "Continue with Google": "ادامه با گوگل",
+  "Don't have an account?": "حساب کاربری ندارید؟",
+  "Already have an account?": "حساب کاربری دارید؟",
+  "Password": "رمز عبور",
+  "First Name": "نام",
+  "Last Name": "نام خانوادگی",
+  "Username (optional)": "نام کاربری (اختیاری)",
+  "Email": "ایمیل",
+  "Confirm Password": "تایید رمز عبور",
+  "Creating account...": "در حال ساخت حساب...",
+  "Signing in...": "در حال ورود...",
+  "Enter the verification code sent to your email.": "کد تایید ارسال شده به ایمیل خود را وارد کنید.",
+  "Verification Code": "کد تایید",
+  "Verifying...": "در حال تایید...",
+  "Verify Email": "تایید ایمیل",
+  "Passwords do not match.": "رمزهای عبور مطابقت ندارند.",
+  "Password must be at least 8 characters.": "رمز عبور باید حداقل ۸ کاراکتر باشد.",
+  "Password must include a lowercase letter.": "رمز عبور باید حداقل یک حرف کوچک انگلیسی داشته باشد.",
+  "Password must include an uppercase letter.": "رمز عبور باید حداقل یک حرف بزرگ انگلیسی داشته باشد.",
+  "Password must include a number.": "رمز عبور باید حداقل یک عدد داشته باشد.",
+  "Password must include a symbol.": "رمز عبور باید حداقل یک نماد داشته باشد.",
+  "Password cannot include your first name.": "رمز عبور نباید شامل نام شما باشد.",
+  "Password cannot include your last name.": "رمز عبور نباید شامل نام خانوادگی شما باشد.",
+  "Password cannot include your email name.": "رمز عبور نباید شامل نام ایمیل شما باشد.",
+  "Use at least 8 characters with uppercase, lowercase, number, and symbol.": "حداقل ۸ کاراکتر همراه با حرف بزرگ، حرف کوچک، عدد و نماد استفاده کنید.",
+  "Signup failed. Please try again.": "ثبت‌ نام ناموفق بود. دوباره تلاش کنید.",
+  "Verification failed. Please check the code and try again.": "تایید ناموفق بود. کد را بررسی کنید و دوباره تلاش کنید.",
+  "Verification is incomplete. Missing: {{fields}}": "تایید کامل نشده است. موارد ناقص: {{fields}}",
+  "Verification failed. Please try again.": "تایید ناموفق بود. دوباره تلاش کنید.",
+  "Additional verification is required for this account.": "این حساب به تایید بیشتر نیاز دارد.",
+  "Login failed. Please try again.": "ورود ناموفق بود. دوباره تلاش کنید.",
+  "app": {
+    "layout": {
+      "portalTitle": "VisaSync",
+      "nav": {
+        "dashboard": "داشبورد",
+        "applications": "درخواست‌ها",
+        "monitor": "پایش",
+        "profile": "پروفایل",
+        "notifications": "اعلان‌ها",
+        "settings": "تنظیمات",
+        "form": "درخواست جدید"
+      },
+      "mobile": {
+        "home": "خانه",
+        "applications": "درخواست‌ها",
+        "monitor": "پایش",
+        "notifications": "اعلان‌ها",
+        "profile": "پروفایل"
+      },
+      "pageTitles": {
+        "default": "پنل کاربری",
+        "dashboard": "داشبورد",
+        "applications": "درخواست‌ها",
+        "monitor": "پایش",
+        "profile": "پروفایل",
+        "notifications": "اعلان‌ها",
+        "settings": "تنظیمات",
+        "form": "درخواست ویزا"
+      },
+      "subtitle": "دسترسی سریع به درخواست‌ها، پایش و تنظیمات حساب.",
+      "newNotifications": "{{count}} اعلان جدید",
+      "signOut": "خروج",
+      "accountFallback": "حساب"
+    },
+    "shared": {
+      "actions": {
+        "back": "بازگشت",
+        "backToPrevious": "بازگشت به صفحه قبل",
+        "continue": "ادامه",
+        "submit": "ثبت",
+        "submitAndContinue": "ثبت و ادامه",
+        "edit": "ویرایش",
+        "confirm": "تأیید"
+      },
+      "dropzone": {
+        "defaultLabel": "عکس پرسنلی",
+        "clickOrDrop": "برای بارگذاری کلیک کنید یا فایل را بکشید و رها کنید",
+        "typesMax": "JPG/PNG حداکثر 2MB",
+        "invalidFile": "فایل انتخابی معتبر نیست",
+        "removeFile": "حذف فایل",
+        "hint": "حداکثر 2MB • JPG/PNG • پس زمینه سفید • اندازه 3×4cm"
+      },
+      "instructions": {
+        "requiredDocs": "مدارک مورد نیاز",
+        "importantNotes": "نکات مهم"
+      },
+      "yes": "بله",
+      "no": "خیر"
+    },
+    "formStepper": {
+      "currentStep": "مرحله فعلی",
+      "stepOf": "مرحله {{step}} از {{total}}"
+    },
+    "formSuccess": {
+      "title": "درخواست شما ارسال شد.",
+      "subtitle": "جزئیات شما دریافت شد و فرایند بررسی آغاز شد.",
+      "nextSteps": "مرحله‌های بعدی",
+      "timeline": {
+        "review": "بررسی و تأیید",
+        "decision": "تصمیم نهایی",
+        "notification": "شما مطلع می‌شوید"
+      },
+      "goDashboard": "رفتن به داشبورد",
+      "newApplication": "شروع درخواست جدید"
+    },
+    "inputField": {
+      "urgentRequest": "درخواست فوری",
+      "noOptionFound": "گزینه‌ای یافت نشد"
+    },
+    "requirements": {
+      "title": "شایستگی دریافت ویزه ها",
+      "description": "در این مرحله، امکان دریافت ویزه ها برای ملیت انتخاب شده بررسی خواهد شد. لطفاً قبل از تکمیل فرم، نکات سمت راست را مطالعه کنید.",
+      "mobileStep": "مرحله ۱ از ۵"
+    },
+    "personalTravel": {
+      "finalCheckQuestion": "آیا اطلاعات وارد شده مورد تایید شما است؟",
+      "mobileStep": "مرحله ۲ از ۵"
+    },
+    "applications": {
+      "title": "درخواست‌های من",
+      "subtitle": "وضعیت درخواست‌های ویزای خود را پیگیری کنید و آن‌ها را از یک جا مدیریت کنید.",
+      "newButton": "درخواست جدید",
+      "filters": {
+        "all": "همه",
+        "pending": "در انتظار",
+        "approved": "تأیید شده",
+        "rejected": "رد شده",
+        "draft": "پیش‌نویس"
+      },
+      "empty": {
+        "title": "هنوز درخواستی ثبت نشده",
+        "subtitle": "با ایجاد درخواست جدید شروع کنید.",
+        "cta": "ثبت درخواست جدید"
+      },
+      "submittedAt": "ارسال شده: {{date}}",
+      "status": {
+        "pending": "در انتظار بررسی",
+        "approved": "تأیید شده",
+        "rejected": "رد شده",
+        "draft": "پیش‌نویس"
+      },
+      "until": "تا {{date}}",
+      "rejectionReason": "دلیل: {{reason}}",
+      "continue": "ادامه",
+      "details": "جزئیات",
+      "collapse": "بستن",
+      "timeline": "تاریخچه وضعیت",
+      "documents": "مدارک پیوست شده",
+      "downloadPdf": "دانلود PDF تأییدیه",
+      "reapply": "ثبت مجدد",
+      "samples": {
+        "pending": {
+          "visaType": "🇦🇫 توریستی ۳۰ روزه",
+          "timeline": ["ثبت درخواست", "بررسی مدارک", "در انتظار نتیجه"],
+          "docs": ["عکس پرسنلی", "اسکن پاسپورت"]
+        },
+        "approved": {
+          "visaType": "🇦🇫 زیارتی",
+          "timeline": ["ثبت درخواست", "تأیید نهایی", "آماده دانلود تأییدیه"],
+          "docs": ["عکس پرسنلی", "اسکن پاسپورت", "تأییدیه پرداخت"]
+        },
+        "rejected": {
+          "visaType": "🇦🇫 تجاری",
+          "reason": "کیفیت پایین تصویر گذرنامه",
+          "timeline": ["ثبت درخواست", "بررسی", "رد درخواست"],
+          "docs": ["عکس پرسنلی", "اسکن پاسپورت"]
+        },
+        "draft": {
+          "visaType": "🇮🇷 توریستی",
+          "timeline": ["ثبت اولیه اطلاعات"]
+        }
+      }
+    },
+    "dashboard": {
+      "cards": {
+        "site": {
+          "title": "وضعیت سایت",
+          "value": "آنلاین",
+          "subtitle": "در دسترس بودن پورتال MFA",
+          "meta": "هر چند ثانیه بررسی می‌شود"
+        },
+        "applications": {
+          "title": "درخواست‌های باز",
+          "value": "۴ فعال",
+          "subtitle": "پیگیری درخواست‌ها در یکجا",
+          "meta": "در حال بررسی، تأیید یا رد"
+        },
+        "monitor": {
+          "title": "پایش",
+          "value": "سالم",
+          "subtitle": "اسکن ظرفیت فعال است",
+          "meta": "اعلان فوری برای هر تغییر"
+        }
+      },
+      "recentTitle": "فعالیت‌های اخیر",
+      "viewAll": "نمایش همه",
+      "quickActions": {
+        "newApplication": "ایجاد درخواست",
+        "updateProfile": "به‌روزرسانی پروفایل",
+        "configureNotifications": "پیکربندی اعلان‌ها"
+      },
+      "activities": [
+        {
+          "icon": "🟢",
+          "text": "پایش فعال است",
+          "time": "همین حالا"
+        },
+        {
+          "icon": "✉️",
+          "text": "تنظیمات اعلان به‌روزرسانی شد",
+          "time": "۱ ساعت پیش"
+        },
+        {
+          "icon": "✅",
+          "text": "درخواست تأیید شد",
+          "time": "امروز"
+        }
+      ]
+    },
+    "auth": {
+      "loginHero": {
+        "title": "ورود به پنل هوشمند ویزا",
+        "subtitle": "مدیریت پایش سایت، درخواست‌ها و اعلان‌ها را در یک پنل متمرکز انجام دهید.",
+        "points": {
+          "monitoring": "پایش زنده evisatraveller.mfa.ir",
+          "notifications": "اعلان فوری هنگام باز شدن ظرفیت",
+          "autoSubmit": "ثبت خودکار درخواست با داده‌های ذخیره شده"
+        }
+      },
+      "loginIntro": "برای ادامه، اطلاعات حساب خود را وارد کنید.",
+      "signupHero": {
+        "title": "ایجاد حساب جدید",
+        "subtitle": "ثبت نام کنید تا پایش هوشمند، اعلان فوری و مدیریت کامل درخواست ویزا فعال شود.",
+        "points": {
+          "prefill": "آماده‌سازی خودکار داده‌های فرم",
+          "fastSubmit": "ثبت سریع هنگام باز شدن ظرفیت",
+          "secureStorage": "ذخیره امن مدارک و اطلاعات شخصی"
+        }
+      },
+      "signupIntro": "حساب خود را ایجاد کنید تا داشبورد فعال شود."
+    },
+    "monitor": {
+      "banner": {
+        "title": "وضعیت پایش سایت",
+        "status": "آنلاین",
+        "lastChecked": "آخرین بررسی: {{seconds}} ثانیه پیش",
+        "quickCheck": "بررسی فوری"
+      },
+      "uptimeChartTitle": "نمودار در دسترس بودن",
+      "table": {
+        "date": "تاریخ",
+        "start": "شروع",
+        "end": "پایان",
+        "duration": "مدت",
+        "firstDuration": "۱۳ دقیقه",
+        "secondDuration": "۶ دقیقه"
+      },
+      "incidentsTitle": "گزارش اختلال‌ها",
+      "settingsTitle": "تنظیمات پایش",
+      "checkInterval": "بازه بررسی",
+      "interval": {
+        "10s": "هر ۱۰ ثانیه",
+        "30s": "هر ۳۰ ثانیه",
+        "1m": "هر ۱ دقیقه",
+        "5m": "هر ۵ دقیقه"
+      },
+      "notifyOffline": "اعلان هنگام قطعی سایت",
+      "notifyOnline": "اعلان هنگام بازگشت سایت",
+      "notifySlot": "اعلان هنگام یافتن ظرفیت",
+      "day": "روز {{day}}"
+    },
+    "notifications": {
+      "title": "اعلان‌ها",
+      "tabs": {
+        "all": "همه",
+        "unread": "خوانده نشده",
+        "alerts": "هشدارها",
+        "system": "سیستمی"
+      },
+      "items": {
+        "offline": {
+          "title": "سایت آفلاین شد",
+          "desc": "سایت مبدا در دسترس نیست",
+          "time": "۲ دقیقه پیش"
+        },
+        "slot": {
+          "title": "ظرفیت یافت شد",
+          "desc": "ظرفیت جدید شناسایی شد",
+          "time": "۱۰ دقیقه پیش"
+        },
+        "approved": {
+          "title": "درخواست تأیید شد",
+          "desc": "درخواست شما تایید شد",
+          "time": "۱ ساعت پیش"
+        },
+        "systemUpdate": {
+          "title": "به‌روزرسانی سیستم",
+          "desc": "نسخه جدید پایش فعال شد",
+          "time": "دیروز"
+        }
+      },
+      "settingsTitle": "تنظیمات اعلان‌ها",
+      "table": {
+        "type": "نوع",
+        "siteOffline": "قطعی سایت",
+        "slotDetected": "یافتن ظرفیت",
+        "applicationApproved": "تأیید درخواست"
+      }
+    },
+    "profile": {
+      "identityTitle": "اطلاعات هویتی",
+      "passportTitle": "اطلاعات گذرنامه",
+      "documentsTitle": "تصاویر و مدارک",
+      "securityTitle": "امنیت حساب",
+      "passportWarning": "هشدار: کمتر از ۶ ماه تا انقضای گذرنامه باقی مانده است.",
+      "fields": {
+        "firstName": "نام",
+        "lastName": "نام خانوادگی",
+        "birthPlace": "محل تولد",
+        "nationality": "ملیت",
+        "passportNumber": "شماره گذرنامه",
+        "issuerCountry": "کشور صادرکننده",
+        "issueDate": "تاریخ صدور",
+        "expiryDate": "تاریخ انقضا"
+      },
+      "samples": {
+        "photo": "عکس پرسنلی.jpg"
+      },
+      "remove": "حذف",
+      "enable2fa": "فعال‌سازی تأیید دو مرحله‌ای",
+      "changePassword": "تغییر رمز عبور",
+      "deleteAllData": "حذف کامل اطلاعات"
+    },
+    "settings": {
+      "menu": {
+        "account": "حساب",
+        "notifications": "اعلان‌ها",
+        "monitorConfig": "پیکربندی پایش",
+        "appearance": "ظاهر",
+        "dangerZone": "بخش خطر"
+      },
+      "monitorConfigTitle": "پیکربندی پایش",
+      "autoSubmit": "ثبت خودکار هنگام یافتن ظرفیت",
+      "requireConfirmation": "نیاز به تأیید قبل از ثبت",
+      "appearanceTitle": "ظاهر",
+      "language": {
+        "fa": "فارسی",
+        "en": "English"
+      },
+      "theme": {
+        "light": "روشن",
+        "dark": "تاریک",
+        "system": "سیستم"
+      },
+      "dangerTitle": "بخش خطر",
+      "actions": {
+        "stopMonitor": "توقف پایش",
+        "clearHistory": "پاکسازی تاریخچه",
+        "deleteAccount": "حذف حساب"
+      }
+    }
+  },
+  "homepage": {
+    "nav": {
+      "signIn": "ورود",
+      "getStarted": "شروع کنید"
+    },
+    "hero": {
+      "badge": "در حال پایش زنده evisatraveller.mfa.ir",
+      "title": "ویزای الکترونیکی ایران شما،<br /><span class=\"hl\">به صورت خودکار ثبت می‌شود.</span>",
+      "subtitle": "دست از رفرش کردن دستی بردارید. eVisaAuto سامانه وزارت خارجه را به صورت ۲۴ ساعته زیر نظر دارد، به محض باز شدن ظرفیت، فرم پرشده شما را قبل از هر فرد دیگری ثبت می‌کند.",
+      "ctaPrimary": "رایگان شروع کنید ←",
+      "ctaSecondary": "حساب کاربری دارم",
+      "statusOnline": "سایت آنلاین",
+      "lastChecked": "آخرین بررسی: {{seconds}} ثانیه پیش",
+      "checksToday": "{{count}} بررسی امروز"
+    },
+    "stats": {
+      "monitoring": "۲۴/۷",
+      "monitoringLabel": "پایش مداوم",
+      "speed": "کمتر از ۵ ثانیه",
+      "speedLabel": "سرعت تشخیص ظرفیت",
+      "applications": "+۲,۴۰۰",
+      "applicationsLabel": "درخواست ثبت‌شده",
+      "uptime": "۹۹.۸٪",
+      "uptimeLabel": "در دسترس بودن"
+    },
+    "features": {
+      "label": "خدمات ما",
+      "title": "هر آنچه برای دریافت ویزای ایران نیاز دارید.",
+      "subtitle": "سامانه وزارت خارجه اغلب از دسترس خارج می‌شود و ظرفیت‌ها در چند ثانیه پر می‌شوند. ما کل فرآیند را برای شما انجام می‌دهیم.",
+      "autoRegistration": {
+        "title": "ثبت خودکار",
+        "desc": "به محض باز شدن ظرفیت، فرم درخواست ویزای شما را به صورت خودکار در evisatraveller.mfa.ir پر و ثبت می‌کند — سریع‌تر از هر انسانی."
+      },
+      "monitoring": {
+        "title": "پایش ۲۴ ساعته سایت",
+        "desc": "به صورت مداوم سامانه وزارت خارجه را برای تغییرات ظرفیت، قطعی و ظرفیت‌های جدید هر چند ثانیه یکبار زیر نظر دارد."
+      },
+      "notifications": {
+        "title": "اعلان فوری",
+        "desc": "به محض آنلاین شدن سایت یا باز شدن ظرفیت جدید، از طریق اعلان فوراً مطلع شوید — هیچ فرصتی را از دست ندهید."
+      },
+      "vault": {
+        "title": "خزانه اطلاعات فرم",
+        "desc": "اطلاعات پاسپورت، ملیت و مشخصات شخصی خود را به صورت امن ذخیره کنید تا درخواست شما در هر لحظه آماده ثبت باشد."
+      },
+      "tracker": {
+        "title": "پیگیر درخواست",
+        "desc": "وضعیت هر ثبت‌نام را به صورت لحظه‌ای از یک داشبورد تمیز پیگیری کنید — در انتظار، تأییدشده یا ردشده."
+      },
+      "retry": {
+        "title": "منطق تلاش مجدد هوشمند",
+        "desc": "در صورت شکست ثبت‌نام به دلیل خطای سرور یا timeout، سیستم به صورت خودکار با تاخیر نمایی مجدداً تلاش می‌کند."
+      }
+    },
+    "steps": {
+      "label": "فرآیند",
+      "title": "در ۴ گام<br />آماده شوید.",
+      "subtitle": "بدون نیاز به دانش فنی. یکبار مشخصات خود را وارد کنید، بقیه کار را به سیستم بسپارید.",
+      "step1": {
+        "num": "۰۱",
+        "title": "پروفایل خود را بسازید",
+        "desc": "مشخصات پاسپورت، ملیت، تاریخ تولد و نیازمندی‌های ویزا را یکبار وارد کنید. داده‌های شما رمزگذاری و به صورت امن ذخیره می‌شود."
+      },
+      "step2": {
+        "num": "۰۲",
+        "title": "ترجیحات خود را تنظیم کنید",
+        "desc": "نوع ویزای مورد نظر، بازه سفری ترجیحی و تنظیمات اعلان را انتخاب کنید. میزان تهاجمی بودن پایش برای ظرفیت را مشخص کنید."
+      },
+      "step3": {
+        "num": "۰۳",
+        "title": "پایش را فعال کنید",
+        "desc": "کلید را بزنید. سیستم ما به صورت شبانه‌روزی evisatraveller.mfa.ir را زیر نظر می‌گیرد و هر تغییر ظرفیت را فوراً به شما اطلاع می‌دهد."
+      },
+      "step4": {
+        "num": "۰۴",
+        "title": "ثبت خودکار یا تأیید",
+        "desc": "هنگام باز شدن ظرفیت، سیستم می‌تواند فرم پرشده شما را به صورت خودکار ثبت کند، یا ابتدا به شما اطلاع دهد تا با یک کلیک بررسی و تأیید کنید."
+      }
+    },
+    "monitor": {
+      "label": "سامانه زنده",
+      "title": "پایشی که هرگز چشم برنمی‌دارد.",
+      "desc": "سرور ما هر چند ثانیه یکبار سامانه وزارت خارجه را پینگ می‌کند. به محض بازگشت سایت از قطعی یا باز شدن ظرفیت جدید، درخواست شما در صف قرار گرفته و ارسال می‌شود — با گزارش کامل قابل مرور در هر زمان.",
+      "features": [
+        "تشخیص ظرفیت در کمتر از ۵ ثانیه",
+        "تلاش مجدد خودکار در خطای سرور",
+        "رد کامل ثبت‌نام",
+        "اعلان ایمیل + پوش"
+      ]
+    },
+    "cta": {
+      "title": "آماده‌اید از دست دادن ظرفیت‌ها را متوقف کنید؟",
+      "subtitle": "به هزاران مسافر بپیوندید که درخواست ویزای الکترونیکی ایران خود را خودکار کرده‌اند.",
+      "button": "ساخت حساب رایگان ←"
+    },
+    "footer": {
+      "copyright": "© ۲۰۲۶ eVisaAuto · وابسته نیست به",
+      "disclaimer": "ساخته شده برای بهبود تجربه سامانه رسمی وزارت خارجه."
+    }
+  },
+  "Address in Iran": "آدرس در ایران",
+  "Applicant mobile number": "شماره همراه متقاضی",
+  "Applicant phone number": "شماره تلفن متقاضی",
+  "Approximate entry date": "تاریخ تقریبی ورود",
+  "Approximate exit date": "تاریخ تقریبی خروج",
+  "Back of residence card photo": "عکس پشت کارت اقامت",
+  "Badakhshan": "بدخشان",
+  "Badghis": "بادغیس",
+  "Baghdad": "بغداد",
+  "Baghlan": "بغلان",
+  "Balkh": "بلخ",
+  "Bamyan": "بامیان",
+  "Birth date": "تاریخ تولد",
+  "Birth place": "محل تولد",
+  "Business": "تجاری",
+  "CRM specialist": "متخصص CRM",
+  "Communications engineer": "مهندس ارتباطات",
+  "Communications specialist": "متخصص ارتباطات",
+  "Computer engineer": "مهندس کامپیوتر",
+  "Contact information": "اطلاعات تماس",
+  "Cryptography engineer": "مهندس رمزگشایی",
+  "Cybersecurity manager": "مدیر سایبر",
+  "Data analyst": "تحلیلگر داده",
+  "Database administrator": "متخصص پایگاه داده",
+  "Database manager": "مدیر دیتابیس",
+  "Database specialist": "متخصص بانک اطلاعاتی",
+  "Daykundi": "دایکندی",
+  "Digital manager": "مدیر دیجیتال",
+  "Drivers": "رانندگان",
+  "ERP specialist": "متخصص ERP",
+  "Entry": "ورود",
+  "Entry type": "نوع ورود",
+  "Expiration date": "تاریخ انقضأ",
+  "Family": "خانواده",
+  "Farah": "فراه",
+  "Faryab": "فاریاب",
+  "Father": "نام پدر",
+  "First name": "نام",
+  "Game developer": "توسعه‌دهنده بازی‌های رایانه‌ای",
+  "Gender": "جنسیت",
+  "Ghazni": "غزنی",
+  "Hardware engineer": "مهندس سخت‌افزار",
+  "Health informatics specialist": "متخصص انفورماتیک پزشکی",
+  "Helmand": "هلمند",
+  "Herat": "هرات",
+  "IT manager": "مدیر IT",
+  "If selected, urgent processing adds 50% to the visa fee.": "در صورت انتخاب درخواست فوری 50% به هزینه ویزه ها اضافه میشود",
+  "Important notes before applying": "نکاتی که قبل از درخواست ویزه ها باید بدانید:",
+  "Information security manager": "مدیر امنیت اطلاعاتی",
+  "Information security specialist": "متخصص امنیت اطلاعاتی",
+  "Information systems analyst": "تحلیلگر سیستم‌های اطلاعاتی",
+  "Information systems manager": "مدیر سیستم‌های اطلاعاتی",
+  "Information systems specialist": "متخصص سیستم‌های اطلاعاتی",
+  "Issue date": "تاریخ صدور",
+  "Jalalabad": "جلال آباد",
+  "Job title": "شغل",
+  "Jowzjan": "جوزجان",
+  "Kabul": "کابل",
+  "Kandahar": "کندهار",
+  "Kapisa": "کاپیسا",
+  "Khost": "خوست",
+  "Kunar": "کونر",
+  "Laghman": "لغمان",
+  "Laissez-passer": "لسه پاسه",
+  "Last name": "نام خانوادگی",
+  "Length of stay (days)": "مدت(روز)",
+  "Male": "مرد",
+  "Marital status": "وضعیت تاهل",
+  "Mazar-i-Sharif": "مزار شریف",
+  "Mobile app developer": "توسعه‌دهنده اپلیکیشن موبایل",
+  "Mobile app specialist": "متخصص اپلیکیشن موبایل",
+  "Mobile game developer": "توسعه‌دهنده بازی‌های موبایل",
+  "Nangarhar": "ننگرهار",
+  "Nationality": "ملیت",
+  "Nationality duplicate": "ملیت",
+  "Network administrator": "مدیر شبکه",
+  "Network engineer": "مهندس شبکه",
+  "Network security specialist": "متخصص امنیت شبکه",
+  "Network specialist": "متخصص شبکه",
+  "Nimruz": "نیمروز",
+  "Nuristan": "نورستان",
+  "Official": "رسمی",
+  "Online game developer": "توسعه‌دهنده بازی‌های آنلاین",
+  "Optical communications specialist": "متخصص ارتباطات نوری",
+  "Paktia": "پکتیا",
+  "Panjshir": "پنجشیر",
+  "Passport information": "اطلاعات گذرنامه",
+  "Passport number": "شماره گذرنامه",
+  "Passport photo": "عکس گذرنامه",
+  "Passport stamp extension photo": "عکس مهر تمدید اعتبار گذرنامه",
+  "Passport type": "نوع گذرنامه",
+  "Passport type duplicate": "نوع گذرنامه",
+  "Personal information": "اطلاعات شخصی",
+  "Personal photo": "عکس شخصی",
+  "Phone number in Iran": "شماره تلفن در ایران",
+  "Pilgrimage": "زیارتی",
+  "Political": "سیاسی",
+  "Postal code": "کد پستی",
+  "Press": "مطبوعاتی",
+  "Previous nationality": "تابعیت قبلی",
+  "Project manager": "مدیر پروژه",
+  "Pul-e-Khumri": "پل خمری",
+  "Purpose of visit": "هدف از سفر",
+  "Regular": "عادی",
+  "Relative visit": "بازدید بستگان",
+  "Residence address": "آدرس محل اقامت",
+  "Residence card": "کارت اقامت",
+  "Residence card if required": "کارت اقامت در صورت نیاز",
+  "Samangan": "سمنگان",
+  "Sar-e Pol": "سرپل",
+  "Server specialist": "متخصص سرور",
+  "Service": "خدمت",
+  "Single": "مجرد",
+  "Single entry": "یکبار",
+  "Software developer": "توسعه‌دهنده نرم‌افزار",
+  "Software engineer": "مهندس نرم‌افزار",
+  "Step 1": "گام اول",
+  "Step 2": "گام دوم",
+  "Step 3": "گام سوم",
+  "Step 4": "گام چهارم",
+  "Systems analyst": "تحلیلگر سیستم",
+  "Takhar": "تخار",
+  "Technical support lead": "مدیر پشتیبانی فنی",
+  "Technical support specialist": "متخصص پشتیبانی فنی",
+  "Technology operations manager": "مدیر امور فناوری اطلاعات",
+  "Telecommunications specialist": "متخصص سیستم‌های مخابراتی",
+  "The embassy or consulate where you plan to submit documents or receive your visa.": "سفارت یا نمایندگی ایران که قصد تحویل مدارک و یا دریافت ویزه را دارید",
+  "Tourist": "جهانگردی",
+  "Tourist (Urgent)": "جهانگردی (فوری)",
+  "Transit": "عبور",
+  "Travel Document": "مدرک مسافرتی",
+  "UI/UX designer": "طراح UI/UX",
+  "Urgent request": "فوری",
+  "Visa center location": "مرکز مراجعه ویزه",
+  "Visa cost": "هزینه ویزه",
+  "Visa information": "اطلاعات ویزه ها",
+  "Visa type": "نوع ویزه ها",
+  "Visa type duplicate": "نوع ویزه ها",
+  "Web application developer": "توسعه‌دهنده اپلیکیشن وب",
+  "Web design specialist": "متخصص طراحی وب",
+  "Web developer": "برنامه‌نویس وب",
+  "Website developer": "توسعه‌دهنده وب‌سایت",
+  "Wireless communications specialist": "متخصص ارتباطات بیسیم",
+  "Zabul": "زابل",
+  "Visa eligibility check": "شایستگی دریافت ویزه ها",
+  "Divorced": "مطلقه",
+  "Double entry": "دوبار",
+  "Father's name": "نام پدر",
+  "Female": "زن",
+  "Married": "متاهل",
+  "Multiple entry": "چند بار",
+  "Widowed": "بیوه",
+  "🇦🇪 United Arab Emirates": "🇦🇪 امارات متحده عربی",
+  "🇦🇫 Afghan": "🇦🇫 افغان",
+  "🇮🇳 India": "🇮🇳 هند",
+  "🇮🇶 Iraq": "🇮🇶 عراق",
+  "🇮🇷 Iran": "🇮🇷 ایران",
+  "🇵🇰 Pakistan": "🇵🇰 پاکستان",
+  "🇸🇦 Saudi Arabia": "🇸🇦 عربستان سعودی",
+  "🇹🇯 Tajikistan": "🇹🇯 تاجیکستان",
+  "🇹🇷 Turkey": "🇹🇷 ترکیه",
+  "🇺🇿 Uzbekistan": "🇺🇿 ازبکستان"
 }

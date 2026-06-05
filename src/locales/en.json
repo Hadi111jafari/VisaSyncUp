@@ -1,6 +1,483 @@
 {
-    "Login": "Login",
-    "Sign up": "Sign up",
-    "Continue": "Continue",
-    "Don't have an account?": "Don't have an account?"
+  "Login": "Login",
+  "Sign Up": "Sign Up",
+  "Sign up": "Sign up",
+  "Continue": "Continue",
+  "Continue with Google": "Continue with Google",
+  "Don't have an account?": "Don't have an account?",
+  "Already have an account?": "Already have an account?",
+  "Password": "Password",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Username (optional)": "Username (optional)",
+  "Email": "Email",
+  "Confirm Password": "Confirm Password",
+  "Creating account...": "Creating account...",
+  "Signing in...": "Signing in...",
+  "Enter the verification code sent to your email.": "Enter the verification code sent to your email.",
+  "Verification Code": "Verification Code",
+  "Verifying...": "Verifying...",
+  "Verify Email": "Verify Email",
+  "Passwords do not match.": "Passwords do not match.",
+  "Password must be at least 8 characters.": "Password must be at least 8 characters.",
+  "Password must include a lowercase letter.": "Password must include a lowercase letter.",
+  "Password must include an uppercase letter.": "Password must include an uppercase letter.",
+  "Password must include a number.": "Password must include a number.",
+  "Password must include a symbol.": "Password must include a symbol.",
+  "Password cannot include your first name.": "Password cannot include your first name.",
+  "Password cannot include your last name.": "Password cannot include your last name.",
+  "Password cannot include your email name.": "Password cannot include your email name.",
+  "Use at least 8 characters with uppercase, lowercase, number, and symbol.": "Use at least 8 characters with uppercase, lowercase, number, and symbol.",
+  "Signup failed. Please try again.": "Signup failed. Please try again.",
+  "Verification failed. Please check the code and try again.": "Verification failed. Please check the code and try again.",
+  "Verification is incomplete. Missing: {{fields}}": "Verification is incomplete. Missing: {{fields}}",
+  "Verification failed. Please try again.": "Verification failed. Please try again.",
+  "Additional verification is required for this account.": "Additional verification is required for this account.",
+  "Login failed. Please try again.": "Login failed. Please try again.",
+  "app": {
+    "layout": {
+      "portalTitle": "VisaSync",
+      "nav": {
+        "dashboard": "Dashboard",
+        "applications": "Applications",
+        "monitor": "Monitor",
+        "profile": "Profile",
+        "notifications": "Notifications",
+        "settings": "Settings",
+        "form": "New Application"
+      },
+      "mobile": {
+        "home": "Home",
+        "applications": "Applications",
+        "monitor": "Monitor",
+        "notifications": "Notifications",
+        "profile": "Profile"
+      },
+      "pageTitles": {
+        "default": "User Portal",
+        "dashboard": "Dashboard",
+        "applications": "Applications",
+        "monitor": "Monitor",
+        "profile": "Profile",
+        "notifications": "Notifications",
+        "settings": "Settings",
+        "form": "Visa Application"
+      },
+      "subtitle": "Fast access to your applications, monitoring, and account settings.",
+      "newNotifications": "{{count}} new notifications",
+      "signOut": "Sign Out",
+      "accountFallback": "Account"
+    },
+    "shared": {
+      "actions": {
+        "back": "Back",
+        "backToPrevious": "Back to previous",
+        "continue": "Continue",
+        "submit": "Submit",
+        "submitAndContinue": "Submit and continue",
+        "edit": "Edit",
+        "confirm": "Confirm"
+      },
+      "dropzone": {
+        "defaultLabel": "Passport photo",
+        "clickOrDrop": "Click to upload or drag and drop a file",
+        "typesMax": "JPG/PNG up to 2MB",
+        "invalidFile": "File is not valid",
+        "removeFile": "Remove file",
+        "hint": "Max 2MB • JPG/PNG • White background • 3×4cm"
+      },
+      "instructions": {
+        "requiredDocs": "Required documents",
+        "importantNotes": "Important notes"
+      },
+      "yes": "Yes",
+      "no": "No"
+    },
+    "formStepper": {
+      "currentStep": "Current step",
+      "stepOf": "Step {{step}} of {{total}}"
+    },
+    "formSuccess": {
+      "title": "Your application is on its way.",
+      "subtitle": "We have received your details and started the review process.",
+      "nextSteps": "What happens next",
+      "timeline": {
+        "review": "Review and verification",
+        "decision": "Final decision",
+        "notification": "You will be notified"
+      },
+      "goDashboard": "Go to dashboard",
+      "newApplication": "Start a new application"
+    },
+    "inputField": {
+      "urgentRequest": "Urgent application",
+      "noOptionFound": "No options found"
+    },
+    "requirements": {
+      "title": "Visa eligibility check",
+      "description": "In this step we verify whether your selected nationality is eligible for visa processing. Please review the notes on the right before completing the form.",
+      "mobileStep": "Step 1 of 5"
+    },
+    "personalTravel": {
+      "finalCheckQuestion": "Is the information you provided correct?",
+      "mobileStep": "Step 2 of 5"
+    },
+    "applications": {
+      "title": "My applications",
+      "subtitle": "Track the status of your visa requests and manage them from one place.",
+      "newButton": "New application",
+      "filters": {
+        "all": "All",
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "draft": "Draft"
+      },
+      "empty": {
+        "title": "No applications yet",
+        "subtitle": "Start by creating a new request.",
+        "cta": "Start new application"
+      },
+      "submittedAt": "Submitted: {{date}}",
+      "status": {
+        "pending": "Pending review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "draft": "Draft"
+      },
+      "until": "Until {{date}}",
+      "rejectionReason": "Reason: {{reason}}",
+      "continue": "Continue",
+      "details": "Details",
+      "collapse": "Close",
+      "timeline": "Status history",
+      "documents": "Attached documents",
+      "downloadPdf": "Download approval PDF",
+      "reapply": "Reapply"
+    },
+    "dashboard": {
+      "cards": {
+        "site": {
+          "title": "Site status",
+          "value": "Online",
+          "subtitle": "MFA portal availability",
+          "meta": "Monitored every few seconds"
+        },
+        "applications": {
+          "title": "Open applications",
+          "value": "4 active",
+          "subtitle": "Track requests in one place",
+          "meta": "Pending, approved, or rejected"
+        },
+        "monitor": {
+          "title": "Monitoring",
+          "value": "Healthy",
+          "subtitle": "Slot scanning is active",
+          "meta": "Instant alerts on any change"
+        }
+      },
+      "recentTitle": "Recent activity",
+      "viewAll": "View all",
+      "quickActions": {
+        "newApplication": "Create application",
+        "updateProfile": "Update profile",
+        "configureNotifications": "Configure notifications"
+      },
+      "activities": [
+        {
+          "icon": "🟢",
+          "text": "Monitoring is active",
+          "time": "Just now"
+        },
+        {
+          "icon": "✉️",
+          "text": "Notification settings updated",
+          "time": "1 hour ago"
+        },
+        {
+          "icon": "✅",
+          "text": "Application approved",
+          "time": "Today"
+        }
+      ]
+    },
+    "auth": {
+      "loginHero": {
+        "title": "Login to the smart visa dashboard",
+        "subtitle": "Manage site monitoring, applications, and notifications from one centralized panel.",
+        "points": {
+          "monitoring": "Live monitoring of evisatraveller.mfa.ir",
+          "notifications": "Instant alerts when slots open",
+          "autoSubmit": "Auto-submit applications with saved data"
+        }
+      },
+      "loginIntro": "Enter your account details to continue.",
+      "signupHero": {
+        "title": "Create a new account",
+        "subtitle": "Sign up to enable smart monitoring, instant alerts, and full visa request management.",
+        "points": {
+          "prefill": "Auto-prepared form data",
+          "fastSubmit": "Fast submission when a slot opens",
+          "secureStorage": "Secure storage for documents and personal data"
+        }
+      },
+      "signupIntro": "Create your account to activate the dashboard."
+    },
+    "monitor": {
+      "banner": {
+        "title": "Site monitoring status",
+        "status": "Online",
+        "lastChecked": "Last checked: {{seconds}} seconds ago",
+        "quickCheck": "Run instant check"
+      },
+      "uptimeChartTitle": "Availability chart",
+      "table": {
+        "date": "Date",
+        "start": "Start",
+        "end": "End",
+        "duration": "Duration",
+        "firstDuration": "13 minutes",
+        "secondDuration": "6 minutes"
+      },
+      "incidentsTitle": "Incident reports",
+      "settingsTitle": "Monitor settings",
+      "checkInterval": "Check interval",
+      "interval": {
+        "10s": "Every 10 seconds",
+        "30s": "Every 30 seconds",
+        "1m": "Every 1 minute",
+        "5m": "Every 5 minutes"
+      },
+      "notifyOffline": "Notify when the site goes offline",
+      "notifyOnline": "Notify when the site comes back online",
+      "notifySlot": "Notify when a slot is found",
+      "day": "Day {{day}}"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "tabs": {
+        "all": "All",
+        "unread": "Unread",
+        "alerts": "Alerts",
+        "system": "System"
+      },
+      "items": {
+        "offline": {
+          "title": "Site Offline",
+          "desc": "The source site is unavailable",
+          "time": "2 minutes ago"
+        },
+        "slot": {
+          "title": "Slot Detected",
+          "desc": "A new slot is available",
+          "time": "10 minutes ago"
+        },
+        "approved": {
+          "title": "Application Approved",
+          "desc": "Your application has been approved",
+          "time": "1 hour ago"
+        },
+        "systemUpdate": {
+          "title": "System Update",
+          "desc": "A new monitoring release is live",
+          "time": "Yesterday"
+        }
+      },
+      "settingsTitle": "Notification settings",
+      "table": {
+        "type": "Type",
+        "siteOffline": "Site outage",
+        "slotDetected": "Slot detection",
+        "applicationApproved": "Application approved"
+      }
+    },
+    "profile": {
+      "identityTitle": "Identity information",
+      "passportTitle": "Passport details",
+      "documentsTitle": "Documents & uploads",
+      "securityTitle": "Account security",
+      "passportWarning": "Warning: Your passport has less than 6 months remaining.",
+      "fields": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "birthPlace": "Place of birth",
+        "nationality": "Nationality",
+        "passportNumber": "Passport number",
+        "issuerCountry": "Issuing country",
+        "issueDate": "Issue date",
+        "expiryDate": "Expiry date"
+      },
+      "samples": {
+        "photo": "Passport-photo.jpg"
+      },
+      "remove": "Remove",
+      "enable2fa": "Enable two-factor authentication",
+      "changePassword": "Change password",
+      "deleteAllData": "Delete all account data"
+    },
+    "settings": {
+      "menu": {
+        "account": "Account",
+        "notifications": "Notifications",
+        "monitorConfig": "Monitor Config",
+        "appearance": "Appearance",
+        "dangerZone": "Danger Zone"
+      },
+      "monitorConfigTitle": "Monitor configuration",
+      "autoSubmit": "Auto-submit when a slot is found",
+      "requireConfirmation": "Require confirmation before submission",
+      "appearanceTitle": "Appearance",
+      "language": {
+        "fa": "فارسی",
+        "en": "English"
+      },
+      "theme": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      },
+      "dangerTitle": "Danger Zone",
+      "actions": {
+        "stopMonitor": "Stop monitoring",
+        "clearHistory": "Clear history",
+        "deleteAccount": "Delete account"
+      }
+    },
+    "applications": {
+      "samples": {
+        "pending": {
+          "visaType": "🇦🇫 Tourist 30-day",
+          "timeline": [
+            "Application submitted",
+            "Documents review",
+            "Awaiting result"
+          ],
+          "docs": ["Passport photo", "Passport scan"]
+        },
+        "approved": {
+          "visaType": "🇦🇫 Pilgrimage",
+          "timeline": [
+            "Application submitted",
+            "Final approval",
+            "Ready to download approval"
+          ],
+          "docs": ["Passport photo", "Passport scan", "Payment confirmation"]
+        },
+        "rejected": {
+          "visaType": "🇦🇫 Business",
+          "reason": "Low passport image quality",
+          "timeline": [
+            "Application submitted",
+            "Review",
+            "Application rejected"
+          ],
+          "docs": ["Passport photo", "Passport scan"]
+        },
+        "draft": {
+          "visaType": "🇮🇷 Tourist",
+          "timeline": ["Initial information saved"]
+        }
+      }
+    }
+  },
+  "homepage": {
+    "nav": {
+      "signIn": "Sign In",
+      "getStarted": "Get Started"
+    },
+    "hero": {
+      "badge": "Monitoring evisatraveller.mfa.ir live",
+      "title": "Your Iran eVisa,<br /><span class=\"hl\">submitted automatically.</span>",
+      "subtitle": "Stop refreshing manually. eVisaAuto watches the MFA portal 24/7, detects open slots the instant they appear, and submits your pre-filled application before anyone else can.",
+      "ctaPrimary": "Start for Free →",
+      "ctaSecondary": "I have an account",
+      "statusOnline": "Site Online",
+      "lastChecked": "Last checked: {{seconds}} sec ago",
+      "checksToday": "{{count}} checks today"
+    },
+    "stats": {
+      "monitoring": "24/7",
+      "monitoringLabel": "Continuous Monitoring",
+      "speed": "< 5s",
+      "speedLabel": "Slot Detection Speed",
+      "applications": "2,400+",
+      "applicationsLabel": "Applications Filed",
+      "uptime": "99.8%",
+      "uptimeLabel": "Uptime Tracking"
+    },
+    "features": {
+      "label": "What We Do",
+      "title": "Everything you need to<br />secure your Iran visa.",
+      "subtitle": "The MFA portal goes down often and slots vanish in seconds. We handle the entire process so you don't have to be glued to your screen.",
+      "autoRegistration": {
+        "title": "Auto-Registration",
+        "desc": "Automatically fills and submits your visa application on evisatraveller.mfa.ir the moment slots open — faster than any human can."
+      },
+      "monitoring": {
+        "title": "24/7 Site Monitoring",
+        "desc": "Continuously watches the MFA portal for availability changes, downtime, and new appointment slots every few seconds."
+      },
+      "notifications": {
+        "title": "Instant Notifications",
+        "desc": "Get alerted via push notification the second the site comes back online or a new slot becomes available — never miss a window."
+      },
+      "vault": {
+        "title": "Form Data Vault",
+        "desc": "Securely store your passport, nationality, and personal details so your application is ready to fire at a moment's notice."
+      },
+      "tracker": {
+        "title": "Application Tracker",
+        "desc": "Monitor the status of every submission in real-time from a clean dashboard — pending, approved, or rejected at a glance."
+      },
+      "retry": {
+        "title": "Smart Retry Logic",
+        "desc": "If a submission fails due to server errors or timeouts, the system intelligently retries with exponential back-off automatically."
+      }
+    },
+    "steps": {
+      "label": "Process",
+      "title": "Up and running<br />in 4 steps.",
+      "subtitle": "No technical knowledge required. Set up your profile once, then let the system work.",
+      "step1": {
+        "num": "01",
+        "title": "Create Your Profile",
+        "desc": "Enter your passport details, nationality, date of birth, and visa requirements once. Your data is encrypted and stored securely."
+      },
+      "step2": {
+        "num": "02",
+        "title": "Set Your Preferences",
+        "desc": "Choose your target visa type, preferred travel window, and notification preferences. Configure how aggressively to monitor for slots."
+      },
+      "step3": {
+        "num": "03",
+        "title": "Activate Monitoring",
+        "desc": "Flip the switch. Our system begins watching evisatraveller.mfa.ir around the clock and alerts you to any availability changes instantly."
+      },
+      "step4": {
+        "num": "04",
+        "title": "Auto-Submit or Confirm",
+        "desc": "When a slot opens, the system can auto-submit your pre-filled form, or notify you first so you can review and confirm with one tap."
+      }
+    },
+    "monitor": {
+      "label": "Live System",
+      "title": "A monitor that never blinks.",
+      "desc": "Our backend pings the MFA portal every few seconds. The moment the site recovers from downtime or a new visa slot opens, your application is queued and sent — with full logs you can review any time.",
+      "features": [
+        "Sub-5-second slot detection",
+        "Automatic retry on server errors",
+        "Full submission audit trail",
+        "Email + push notifications"
+      ]
+    },
+    "cta": {
+      "title": "Ready to stop missing slots?",
+      "subtitle": "Join thousands of travellers who've automated their Iran eVisa application.",
+      "button": "Create Free Account →"
+    },
+    "footer": {
+      "copyright": "© 2026 eVisaAuto · Not affiliated with",
+      "disclaimer": "Built to enhance the official MFA eVisa portal experience."
+    }
+  }
 }

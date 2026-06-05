@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import dayjs from 'dayjs';
-import InputField from './InputField';
-import CustomDatePicker from './DatePicker';
-import CustomDropzone from './Dropzone';
-import Instructions from './Instructions';
-import { formFields, instructions } from './constants';
-import { updateFormData } from '../state/formSlice';
-import { toggleCheckbox } from '../state/formSlice';
-import FinalCheckModal from './FinalCheckModal';
-import { VscChecklist } from 'react-icons/vsc';
-import { GrRevert } from 'react-icons/gr';
-import { IoIosSave } from 'react-icons/io';
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
+import InputField from "./InputField";
+import CustomDatePicker from "./DatePicker";
+import CustomDropzone from "./Dropzone";
+import Instructions from "./Instructions";
+import { formFields, instructions } from "./constants";
+import { updateFormData } from "../state/formSlice";
+import { toggleCheckbox } from "../state/formSlice";
+import FinalCheckModal from "./FinalCheckModal";
+import { VscChecklist } from "react-icons/vsc";
 
 const PersonalAndTravelInfoStep = ({
   isOpen,
@@ -19,18 +18,24 @@ const PersonalAndTravelInfoStep = ({
   step,
   setIsOpen,
   handlePrev,
+  onFormSubmitted,
+  onProgressStepChange,
 }) => {
-  const [selectedFiles1, setSelectedFiles1] = useState([]);
-  // const [selectedFiles2, setSelectedFiles2] = useState([]);
-  // const [preview, setPreview] = useState('');
+  const { t } = useTranslation();
+  const [selectedFilesByField, setSelectedFilesByField] = useState({});
+  const activeProgressRef = useRef(2);
   const formData = useSelector((state) => state.form.formData);
   const isChecked = formData.urgentRequest;
-  // const photo = formData.photo
   const dispatch = useDispatch();
 
-  const handlePreview1 = (name, files) => {
-    // dispatch(uploadImage({name, files}));
-    setSelectedFiles1(files)
+  const handlePreview1 = (name, files, error = null) => {
+    setSelectedFilesByField((prev) => ({
+      ...prev,
+      [name]: {
+        files,
+        error,
+      },
+    }));
   };
 
   const handleChange = (name, value) => {
@@ -41,6 +46,7 @@ const PersonalAndTravelInfoStep = ({
     dispatch(toggleCheckbox());
   };
   const instructionIdMap = { 16: 100, 23: 200, 28: 300, 38: 400 };
+  const progressStepByInstructionId = { 100: 2, 200: 3, 300: 4, 400: 5 };
   const idsToRenderHrAfter = Object.keys(instructionIdMap).map(Number);
 
   let costAndLocationInModal = [];
@@ -48,7 +54,7 @@ const PersonalAndTravelInfoStep = ({
 
   const renderFieldComponent = (fieldDetail) => {
     switch (fieldDetail.type) {
-      case 'InputField':
+      case "InputField":
         return (
           <InputField
             key={fieldDetail.id}
@@ -59,7 +65,7 @@ const PersonalAndTravelInfoStep = ({
             {...fieldDetail.props}
           />
         );
-      case 'CustomDatePicker':
+      case "CustomDatePicker":
         return (
           <CustomDatePicker
             key={fieldDetail.id}
@@ -69,12 +75,14 @@ const PersonalAndTravelInfoStep = ({
             {...fieldDetail.props}
           />
         );
-      case 'CustomDropzone':
+      case "CustomDropzone":
         return (
           <CustomDropzone
             key={fieldDetail.id}
-            selectedFiles={selectedFiles1}
-            // setSelectedFiles={setSelectedFiles}
+            selectedFiles={
+              selectedFilesByField[fieldDetail.props.name]?.files || []
+            }
+            error={selectedFilesByField[fieldDetail.props.name]?.error || null}
             handlePreview={handlePreview1}
             label={fieldDetail.label}
             {...fieldDetail.props}
@@ -94,19 +102,20 @@ const PersonalAndTravelInfoStep = ({
         currentSectionFields.push(
           <div key={`currentSectionFields-${field.id}`}>
             {renderFieldComponent(field)}
-          </div>
+          </div>,
         );
       }
       if (idsToRenderHrAfter.includes(field.id)) {
         const instruction = instructions.find(
-          (instr) => instr.id === instructionIdMap[field.id]
+          (instr) => instr.id === instructionIdMap[field.id],
         );
         sections.push(
           <div
             key={`section-${field.id}`}
-            className="grid grid-cols-1 sm:grid-cols-12 gap-10 m-5 sm:m-10 text-sm z-10 relative "
+            data-progress-step={progressStepByInstructionId[instruction.id]}
+            className="form-section-block relative z-10 grid grid-cols-1 gap-6 px-2 pb-4 sm:grid-cols-12 sm:gap-8 sm:px-4"
           >
-            <div className="sm:col-start-2 sm:col-span-5">
+            <div className="rounded-[20px] border border-[#00B8C833] bg-white p-4 shadow-[0_2px_8px_rgba(0,120,140,0.08)] sm:col-span-6 sm:col-start-1 sm:p-6">
               {currentSectionFields}
             </div>
             <Instructions
@@ -116,15 +125,14 @@ const PersonalAndTravelInfoStep = ({
               step={instruction.step}
               instructions={instruction.content}
             />
-          </div>
+          </div>,
         );
 
         if (index < formFields.length - 2) {
           sections.push(
-            <div key={`hr-${field.id}`} className="w-5/6 mr-auto ml-auto">
-              <hr className="w-full h-px my-3 bg-gray-500 border-0 rounded" />
-              <hr className="w-full h-px my-3 bg-gray-500 border-0 rounded" />
-            </div>
+            <div key={`hr-${field.id}`} className="mx-auto my-3 w-11/12">
+              <hr className="h-px w-full rounded border-0 bg-[#00B8C833]" />
+            </div>,
           );
         }
 
@@ -135,19 +143,40 @@ const PersonalAndTravelInfoStep = ({
       let checkboxValue;
       let type;
       let visaCost;
+
+      const lookupOptionLabel = (valueToLookup) => {
+        if (!Array.isArray(field.props.options)) {
+          return valueToLookup;
+        }
+
+        const optionEntry = field.props.options.find((option) =>
+          typeof option === "string"
+            ? option === valueToLookup
+            : option.value === valueToLookup,
+        );
+
+        if (!optionEntry) {
+          return valueToLookup;
+        }
+
+        const optionLabel =
+          typeof optionEntry === "string" ? optionEntry : optionEntry.label;
+        return t(optionLabel, optionLabel);
+      };
+
       if (formData[field.props.name] === null) {
         return null;
       }
       if (formData[field.props.name] instanceof dayjs) {
-        const formattedDate = formData[field.props.name].format('YYYY-MM-DD');
+        const formattedDate = formData[field.props.name].format("YYYY-MM-DD");
         fieldValuesInModal = formattedDate;
       } else {
-        fieldValuesInModal = formData[field.props.name];
+        fieldValuesInModal = lookupOptionLabel(formData[field.props.name]);
       }
       if (isChecked) {
-        checkboxValue = 'بلی';
+        checkboxValue = t("app.shared.yes");
       } else {
-        checkboxValue = 'خیر';
+        checkboxValue = t("app.shared.no");
       }
       if (field.id === 31) {
         fieldValuesInModal = checkboxValue;
@@ -156,16 +185,16 @@ const PersonalAndTravelInfoStep = ({
       if (field.id >= 5 && field.id <= 37) {
         otherFieldsInModal.push(
           <div
-            className="flex mt-4 text-slate-100"
+            className="mt-4 flex text-slate-100"
             key={`111field-${field.id}`}
           >
             <p className="flex-1" key={`label-${field.id}`}>
-              {field.props.label}
+              {t(field.props.label, field.props.label)}
             </p>
-            <p className="flex-1 mr-5" key={`value-${field.id}-${index}`}>
+            <p className="mr-5 flex-1" key={`value-${field.id}-${index}`}>
               {fieldValuesInModal}
             </p>
-          </div>
+          </div>,
         );
       }
 
@@ -176,28 +205,28 @@ const PersonalAndTravelInfoStep = ({
       if (field.id === 4 || field.id === 39) {
         let i;
         switch (type) {
-          case 'ورود':
+          case "Entry":
             i = 0;
             break;
-          case 'جهانگردی':
+          case "Tourist":
             i = 1;
             break;
-          case 'زیارتی':
+          case "Pilgrimage":
             i = 2;
             break;
-          case 'سیاسی':
+          case "Political":
             i = 3;
             break;
-          case 'عبور':
+          case "Transit":
             i = 4;
             break;
-          case 'تجاری':
+          case "Business":
             i = 5;
             break;
-          case 'بازدید':
+          case "Relative visit":
             i = 6;
             break;
-          case 'جهانگردی (فوری)':
+          case "Tourist (Urgent)":
             i = 7;
             break;
           default:
@@ -205,20 +234,23 @@ const PersonalAndTravelInfoStep = ({
         }
         if (i !== -1) {
           visaCost = formData.visaCost[i];
-          return;
         }
         costAndLocationInModal.push(
-          <div className="flex mt-4 relative">
-            <p key={`costAndLocation-${field.id}-label`}>{field.props.label}</p>
+          <div className="relative mt-4 flex">
+            <p key={`costAndLocation-${field.id}-label`}>
+              {t(field.props.label, field.props.label)}
+            </p>
             <p
               key={`costAndLocation-${field.id}-value`}
               className={`mr-8 font-semibold ${
-                field.id === 39 ? 'text-green-500' : null
+                field.id === 39 ? "text-green-500" : null
               }`}
             >
-              {field.id === 4 ? formData[field.props.name] : visaCost}
+              {field.id === 4
+                ? lookupOptionLabel(formData[field.props.name])
+                : visaCost}
             </p>
-          </div>
+          </div>,
         );
       }
     });
@@ -227,52 +259,125 @@ const PersonalAndTravelInfoStep = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     onClose();
+    if (onFormSubmitted) {
+      onFormSubmitted();
+    }
   };
   useEffect(() => {
+    activeProgressRef.current = 2;
+    onProgressStepChange?.(2);
+  }, [onProgressStepChange]);
+
+  useEffect(() => {
+    const blocks = Array.from(document.querySelectorAll(".form-section-block"));
+    if (!blocks.length || !onProgressStepChange) {
+      return undefined;
+    }
+
+    let ticking = false;
+
+    const updateByScrollPosition = () => {
+      const viewportAnchor = window.innerWidth < 640 ? 180 : 220;
+      let nextProgressStep = 2;
+
+      blocks.forEach((block) => {
+        const blockTop = block.getBoundingClientRect().top;
+        const mappedStep = Number(block.getAttribute("data-progress-step"));
+
+        if (!Number.isNaN(mappedStep) && blockTop <= viewportAnchor) {
+          nextProgressStep = mappedStep;
+        }
+      });
+
+      if (nextProgressStep !== activeProgressRef.current) {
+        activeProgressRef.current = nextProgressStep;
+        onProgressStepChange(nextProgressStep);
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateByScrollPosition();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    updateByScrollPosition();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [onProgressStepChange]);
+
+  useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('overflow-hidden');
+      document.body.classList.add("overflow-hidden");
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove("overflow-hidden");
     }
 
     return () => {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove("overflow-hidden");
     };
   }, [isOpen]);
 
   return (
     <>
-      <div className="flex flex-col ">
+      <div className="flex flex-col pb-24 sm:pb-0">
         {renderSections()}
         {step === 2 && (
           <>
-            <div className="sm:flex sm:gap-4 sm:mr-5 sm:mb-10 sm:ml-20 sm:mt-0 gap-4 mr-auto mb-10 ml-auto mt-0">
+            <div className="mb-8 hidden justify-end gap-3 px-4 sm:flex">
+              <button
+                className="min-h-12 rounded-[14px] border border-[#00B8C8] bg-white px-5 py-3 text-sm font-semibold text-[#1A6370] transition hover:bg-[#E0F7FA]"
+                type="button"
+                onClick={handlePrev}
+              >
+                {t("app.shared.actions.backToPrevious")}
+              </button>
               <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                className="flex sm:w-[197px] justify-center mt-2 w-full bg-gray-100 hover:text-white text-blue-600 font-bold border rounded-full py-2 px-4  hover:bg-blue-600  transition duration-300 ease-in-out transform hover:scale-105"
+                className="min-h-12 rounded-[14px] bg-gradient-to-br from-[#00B8C8] to-[#007A8A] px-7 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,184,200,0.35)] transition hover:-translate-y-[1px]"
               >
-                ثبت و ادامه
-                <span className="ml-2 mt-1">
-                  <IoIosSave />
-                </span>
+                {t("app.shared.actions.submitAndContinue")}
               </button>
-              <div className="mt-2 hover:bg-gray-500 hover:text-white text-gray-500 border font-bold py-2 px-4 rounded-full  cursor-pointer transition duration-300 ease-in-out transform hover:scale-105">
-                <button className="flex" type="button" onClick={handlePrev}>
-                  برگشت به صفحه قبل
-                  <span className="ml-2 mt-1.5">
-                    <GrRevert />
-                  </span>
-                </button>
-              </div>
             </div>
           </>
         )}
       </div>
+
+      {step === 2 && (
+        <div className="fixed bottom-0 left-0 right-0 z-30 flex h-[72px] items-center justify-between border-t border-[#00B8C833] bg-white px-4 pb-[max(env(safe-area-inset-bottom),8px)] pt-2 sm:hidden">
+          <button
+            type="button"
+            onClick={handlePrev}
+            className="min-h-12 rounded-[14px] px-4 py-2 text-sm font-semibold text-[#1A6370]"
+          >
+            {t("app.shared.actions.back")}
+          </button>
+          <p className="text-xs font-bold text-[#1A6370]">
+            {t("app.personalTravel.mobileStep")}
+          </p>
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="min-h-12 rounded-[14px] bg-gradient-to-br from-[#00B8C8] to-[#007A8A] px-5 py-2 text-sm font-bold text-white"
+          >
+            {t("app.shared.actions.submit")}
+          </button>
+        </div>
+      )}
+
       <div className="flex">
-        <div className="z-10 relative ">
+        <div className="relative z-10 ">
           <FinalCheckModal
             open={isOpen}
             onClose={onClose}
@@ -288,34 +393,36 @@ const PersonalAndTravelInfoStep = ({
                   X
                 </p>
                 <div className="flex">
-                  {selectedFiles1.map((file, index) => (
-                    <img
-                      className='w-20 h-20'
-                      key={index}
-                      src={URL.createObjectURL(file)}
-                      alt={`Preview 1 - ${index}`}
-                    />
-                  ))}
-                  <h1 className="mr-4 mt-5 text-slate-100 font-bold">
-                    اطلاعات وارده شده مورد تائید شما می باشد ؟
+                  {Object.values(selectedFilesByField)
+                    .flatMap((entry) => entry.files || [])
+                    .map((file, index) => (
+                      <img
+                        className="h-20 w-20"
+                        key={index}
+                        src={URL.createObjectURL(file)}
+                        alt={`Preview 1 - ${index}`}
+                      />
+                    ))}
+                  <h1 className="mr-4 mt-5 font-bold text-slate-100">
+                    {t("app.personalTravel.finalCheckQuestion")}
                   </h1>
                 </div>
                 <hr />
                 {otherFieldsInModal}
               </div>
             </div>
-            <div className="ml-12 mr-12 mt-2 relative">
-              <div key={`keysss-${Math.random()}`} className="flex flex-col">
+            <div className="relative ml-12 mr-12 mt-2">
+              <div className="flex flex-col">
                 {costAndLocationInModal}
                 <div className="">
                   <VscChecklist
                     key={1}
                     size={70}
-                    className="absolute top-4 left-0 text-slate-500"
+                    className="absolute left-0 top-4 text-slate-500"
                   />
                 </div>
               </div>
-              <div className="flex-wrap border mt-4 text-center bg-slate-100">
+              <div className="mt-4 flex-wrap border bg-slate-100 text-center">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
                 odio a? Alias quo sit cum nobis placeat nam, voluptate error
                 doloremque, suscipit dignissimos eos fugiat distinctio nihil.
