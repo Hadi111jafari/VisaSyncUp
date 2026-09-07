@@ -1,8 +1,8 @@
-# VisaSyncUp
+# VisaSync
 
 A React-based frontend for improving visa application workflows and portal monitoring around the `evisatraveller.mfa.ir` experience.
 
-VisaSyncUp provides a polished dashboard, authentication, application tracker, monitoring page, and a guided application form using a modern React + Tailwind UI.
+VisaSync provides a polished dashboard, authentication, application tracker, monitoring page, and a guided application form using a modern React + Tailwind UI.
 
 ## Key Features
 
@@ -39,8 +39,8 @@ VisaSyncUp provides a polished dashboard, authentication, application tracker, m
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/VisaSyncUp.git
-cd VisaSyncUp
+git clone https://github.com/your-username/VisaSync.git
+cd VisaSync
 ```
 
 2. Install dependencies:
